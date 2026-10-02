@@ -6,7 +6,7 @@ La propuesta consiste en una plataforma de apoyo para la revisión de datos de m
 
 La solución busca disminuir la revisión manual de grandes volúmenes de datos y presentar al analista información priorizada para apoyar su trabajo. Los datos originales no se modifican automáticamente y la validación humana se mantiene antes de gestionar o enviar un ticket.
 
-## Para quién es
+## Para quién es el aplicativo
 
 El usuario directo es el ingeniero o analista de monitoreo de Unisource Ingeniería, responsable de revisar los datos de los pozos, detectar anomalías y gestionar su trazabilidad.
 
