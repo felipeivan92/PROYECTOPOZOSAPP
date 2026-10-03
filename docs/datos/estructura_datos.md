@@ -37,6 +37,8 @@ erDiagram
         numero valor
         texto unidad
         si_no dato_valido
+        lista origen_dato
+        texto referencia_origen
     }
 
     EVENTO {
@@ -47,6 +49,8 @@ erDiagram
         lista prioridad
         lista estado
         si_no requiere_ticket
+        texto criterio_deteccion
+        fecha_hora fecha_hora_limite_gestion
     }
 
     EVIDENCIA {
@@ -97,6 +101,8 @@ erDiagram
 
 El símbolo `*` identifica un campo obligatorio.
 
+Los registros incluidos a continuación son ejemplos ilustrativos utilizados para representar la estructura preliminar y no corresponden a información operacional real.
+
 ### Tabla: USUARIO
 
 | Campo | Tipo | Clave | Obligatorio | Descripción |
@@ -141,13 +147,15 @@ El símbolo `*` identifica un campo obligatorio.
 | valor* | número | - | Sí | Valor registrado. |
 | unidad* | texto | - | Sí | Unidad de medida asociada al valor. |
 | dato_valido* | sí o no | - | Sí | Indica si el dato puede utilizarse en el análisis. |
+| origen_dato* | lista | - | Sí | Fuente desde la que se obtuvo el registro. |
+| referencia_origen | texto | - | No | Archivo, sistema o referencia desde donde se obtuvo el dato. |
 
 **Ejemplos de registros**
 
-| id_dato* | id_pozo* | fecha_hora* | variable* | valor* | unidad* | dato_valido* |
-|---:|---:|---|---|---:|---|---|
-| 5001 | 101 | 2026-09-30 10:00 | Caudal | 0,72 | L/s | Sí |
-| 5002 | 102 | 2026-09-30 10:00 | Caudal | 0,00 | L/s | Sí |
+| id_dato* | id_pozo* | fecha_hora* | variable* | valor* | unidad* | dato_valido* | origen_dato* | referencia_origen |
+|---:|---:|---|---|---:|---|---|---|---|
+| 5001 | 101 | 2026-09-30 10:00 | Caudal | 0,72 | L/s | Sí | ARCHIVO_DGA | registros_pozo_2026_09.csv |
+| 5002 | 102 | 2026-09-30 10:00 | Caudal | 0,00 | L/s | Sí | ARCHIVO_DGA | registros_pozo_2026_09.csv |
 
 ### Tabla: EVENTO
 
@@ -160,13 +168,15 @@ El símbolo `*` identifica un campo obligatorio.
 | prioridad* | lista | - | Sí | Nivel de prioridad para su revisión. |
 | estado* | lista | - | Sí | Estado de revisión del evento. |
 | requiere_ticket* | sí o no | - | Sí | Indica si el evento requiere gestionar un ticket. |
+| criterio_deteccion* | texto | - | Sí | Regla o condición que provocó la detección del evento. |
+| fecha_hora_limite_gestion | fecha y hora | - | No | Fecha y hora límite definida para gestionar el evento cuando corresponda. |
 
 **Ejemplos de registros**
 
-| id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | requiere_ticket* |
-|---:|---:|---|---|---|---|---|
-| 7001 | 101 | 2026-09-30 10:05 | Valor fuera de rango | Alta | En revisión | Sí |
-| 7002 | 102 | 2026-09-30 10:05 | Lectura en cero | Media | Pendiente | Sí |
+| id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | requiere_ticket* | criterio_deteccion* | fecha_hora_limite_gestion |
+|---:|---:|---|---|---|---|---|---|---|
+| 7001 | 101 | 2026-09-30 10:05 | Valor fuera de rango | Alta | En revisión | Sí | Caudal superior al límite definido para el pozo | 2026-10-03 10:05 |
+| 7002 | 102 | 2026-09-30 10:05 | Lectura en cero | Media | Pendiente | Sí | Caudal registrado igual a cero | 2026-10-03 10:05 |
 
 ### Tabla: EVIDENCIA
 
@@ -219,5 +229,8 @@ El símbolo `*` identifica un campo obligatorio.
 
 | id_ticket* | id_evento* | codigo_ticket* | fecha_hora_creacion* | estado* | motivo* |
 |---:|---:|---|---|---|---|
+| 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
+| 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
+
 | 9001 | 7001 | TK-2026-001 | 2026-09-30 10:35 | Abierto | Revisar condición detectada en el dato de monitoreo. |
 | 9002 | 7002 | TK-2026-002 | 2026-09-30 10:40 | Abierto | Revisar lectura en cero detectada por el sistema. |
