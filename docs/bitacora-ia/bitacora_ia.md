@@ -41,3 +41,22 @@ Esta bitácora registra usos reales de un agente de IA realizados durante la pre
 **Qué se aceptó y qué se corrigió:** Se mantuvo una estructura mínima y fácil de explicar, evitando agregar archivos que no fueran necesarios. No se incorporaron claves reales ni credenciales. La estructura de datos quedó declarada como preliminar, ya que la implementación de la base de datos corresponde a una etapa posterior.
 
 **Cómo se verificó:** Se contrastó la carpeta final con los requisitos indicados en las instrucciones del Avance 3 y se revisó que todas las subcarpetas tuvieran contenido versionable.
+
+## Uso 4 - Incorporación de retroalimentación docente
+
+### Objetivo
+Analizar la retroalimentación recibida en el Avance 1 e identificar qué mejoras debían incorporarse al desarrollo actual del proyecto.
+
+### Instrucción entregada
+Se proporcionó la retroalimentación entregada por la profesora y se solicitó compararla con el README, el caso de uso y la estructura de datos ya desarrollada, con el objetivo de identificar qué aspectos debían precisarse o corregirse.
+
+### Respuesta obtenida
+Se propuso precisar quién experimenta directamente el problema, en qué momento ocurre y cuáles son sus consecuencias. También se recomendó incorporar evidencia del problema, definir roles más específicos, explicar cómo ingresan los datos al sistema y establecer de manera clara qué condiciones son consideradas anomalías.
+
+### Qué se aceptó y qué se corrigió
+El equipo aceptó incorporar estas mejoras en la documentación actual del proyecto. Se actualizaron el README y la estructura preliminar de datos, incorporando el origen de los datos, el criterio de detección de anomalías y una definición más precisa de los actores involucrados.
+
+Se decidió mantener sin modificaciones los documentos correspondientes a avances ya evaluados, de manera de conservar el historial del proyecto y evidenciar su evolución.
+
+### Cómo se verificó
+Los cambios se compararon con la retroalimentación entregada por la profesora y con el caso de uso definido en el Avance 2. Además, se revisó que las modificaciones no alteraran el alcance previamente establecido y que mantuvieran coherencia con la solución propuesta.
