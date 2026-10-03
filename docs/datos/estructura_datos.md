@@ -232,5 +232,3 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 | 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
 | 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
 
-| 9001 | 7001 | TK-2026-001 | 2026-09-30 10:35 | Abierto | Revisar condición detectada en el dato de monitoreo. |
-| 9002 | 7002 | TK-2026-002 | 2026-09-30 10:40 | Abierto | Revisar lectura en cero detectada por el sistema. |
