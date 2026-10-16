@@ -39,7 +39,7 @@ https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT
 
 Antes de cerrar la entrega, exportar las cuatro pantallas como PNG y guardarlas en esta carpeta con estos nombres:
 
-- `P1_eventos_priorizados.png`
-- `P2_detalle_anomalia.png`
-- `P3_registrar_gestion.png`
-- `P4_confirmacion_trazabilidad.png`
+P1 · Eventos priorizados.png
+P2 · Detalle de la anomalía.png
+P3 · Registrar gestión.png
+P4 · Confirmación y trazabilidad.png
