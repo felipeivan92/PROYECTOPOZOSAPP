@@ -1,7 +1,7 @@
 
 # Historias de usuario · Sistema de apoyo al monitoreo y trazabilidad de pozos
 
-**Conversación:** Analista de monitoreo, **9 de Octubre de 2026**. Nos indicó que una de las tareas que más tiempo toma es revisar y comparar los resultados del análisis para validar si un dato es correcto, especialmente al contrastar información de DGA y LI-COR. También señaló que los problemas aparecen al descargar y revisar los datos diarios y al validar una anomalía antes de generar una gestión. Entre las anomalías más frecuentes mencionó datos faltantes, duplicados, sobreflujo de caudal en L/s y m³, y cambios bruscos en las mediciones.
+**Conversación:** Analista de monitoreo, **9 de octubre de 2026**. Nos indicó que una de las tareas que más tiempo toma es revisar y comparar los resultados del análisis para validar si un dato es correcto, especialmente al contrastar información de DGA y LI-COR. También señaló que los problemas aparecen al descargar y revisar los datos diarios y al validar una anomalía antes de generar una gestión. Entre las anomalías más frecuentes mencionó datos faltantes, duplicados, sobreflujo de caudal en L/s y m³, y cambios bruscos en las mediciones.
 
 **Flujo principal:** Identificar una anomalía priorizada, revisar y comparar su evidencia, validar si corresponde una gestión y dejar trazabilidad del resultado.
 
@@ -32,8 +32,4 @@ Ver `docs/wireframes/`.
 
 Archivo Figma:
 https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT
-## Avance 4 · Historias de usuario y wireframes
 
-- [Historias de usuario](docs/historias.md)
-- [Wireframes del flujo principal](docs/wireframes/)
-- [Archivo editable en Figma](https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT)
