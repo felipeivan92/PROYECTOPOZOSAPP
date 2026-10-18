@@ -95,7 +95,7 @@ Equipo N° 7:
 
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
-- [Archivo editable en Figma](https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT)
+- [Archivo editable en Figma](https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7?node-id=0-1&t=b24mgRzqm4I21QIc-1)
   
 ## Documentación complementaria
 

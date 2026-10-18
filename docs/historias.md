@@ -31,5 +31,5 @@ Como **analista de monitoreo**, quiero **ver la anomalía gestionada con su esta
 Ver `docs/wireframes/`.
 
 Archivo Figma:
-https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT
+https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7?node-id=0-1&t=b24mgRzqm4I21QIc-1
 
