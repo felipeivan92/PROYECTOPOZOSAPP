@@ -96,3 +96,10 @@ Equipo N° 7:
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
 - [Archivo editable en Figma](https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT)
+  
+## Documentación complementaria
+
+- [Retroalimentación del Avance 3](docs/unidad1/retroalimentacion_avance3.md)
+- [Herramientas de la solución](docs/herramientas.md)
+- [Roadmap actualizado](docs/roadmap.md)
+- [Bitácora de uso de IA](docs/bitacora-ia/bitacora_ia.md)
