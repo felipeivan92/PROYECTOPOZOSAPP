@@ -60,3 +60,24 @@ Se decidió mantener sin modificaciones los documentos correspondientes a avance
 
 ### Cómo se verificó
 Los cambios se compararon con la retroalimentación entregada por la profesora y con el caso de uso definido en el Avance 2. Además, se revisó que las modificaciones no alteraran el alcance previamente establecido y que mantuvieran coherencia con la solución propuesta.
+
+## Uso 5 - Incorporación de retroalimentación del Avance 3
+
+### Objetivo
+Analizar la retroalimentación recibida en el Avance 3 e identificar qué mejoras debían incorporarse al desarrollo actual del MVP.
+
+### Instrucción entregada
+Se proporcionó la retroalimentación de la profesora y se solicitó contrastarla con el contenido actual del repositorio, incluyendo README, estructura de datos, documentación del proyecto y flujo de pantallas.
+
+### Respuesta obtenida
+Se identificaron aspectos que debían precisarse, entre ellos la definición de indicadores medibles, la separación de las capas de conocimiento, automatización y registro, la documentación de las herramientas utilizadas y la priorización de funciones dentro del roadmap.
+
+También se verificó qué observaciones ya habían sido incorporadas en avances posteriores, evitando modificar elementos que ya estaban correctamente resueltos.
+
+### Qué se aceptó y qué se corrigió
+El equipo decidió mantener las mejoras ya implementadas y agregar únicamente los elementos pendientes.
+
+Se incorporaron indicadores para evaluar el MVP, se precisaron las capas de la solución, se documentaron las herramientas según su función y se reorganizó el roadmap de acuerdo con la importancia de cada funcionalidad.
+
+### Cómo se verificó
+Cada modificación fue contrastada con la retroalimentación docente y con los archivos actualmente versionados en GitHub, verificando que los cambios mantuvieran coherencia con el caso de uso y el alcance definido para el proyecto.
