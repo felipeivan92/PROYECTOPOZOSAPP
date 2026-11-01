@@ -181,6 +181,15 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 | criterio_deteccion* | texto | - | Sí | Regla o condición que provocó la detección del evento. |
 | fecha_hora_limite_gestion | fecha y hora | - | No | Fecha y hora límite definida para gestionar el evento cuando corresponda. |
 
+**Estados del evento**
+
+El estado del evento cambia de acuerdo con el avance de su revisión:
+
+- **Pendiente:** el sistema detectó la anomalía, pero todavía no ha sido revisada por un analista.
+- **En revisión:** un analista está revisando el evento y su evidencia.
+- **Gestionado:** el analista ya tomó una decisión y quedó registrada una gestión. Si corresponde, puede existir un ticket asociado.
+- **Cerrado:** el evento terminó su ciclo de gestión y no requiere acciones pendientes.
+
 **Ejemplos de registros**
 
 | id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | criterio_deteccion* | fecha_hora_limite_gestion |
