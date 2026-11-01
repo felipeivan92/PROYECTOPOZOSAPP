@@ -196,16 +196,16 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 |---|---|---|---|---|
 | id_evidencia* | número | primaria | Sí | Identificador único de la evidencia. |
 | id_evento* | número | externa | Sí | Evento respaldado por la evidencia. |
-| id_dato* | número | externa | Sí | Registro de monitoreo utilizado como respaldo. |
+| id_dato | número | externa | No | Registro de monitoreo utilizado como respaldo cuando existe un dato asociado. Puede quedar vacío cuando la evidencia corresponde a un registro faltante. |
 | descripcion* | texto | - | Sí | Explicación breve de la evidencia. |
 | referencia* | texto | - | Sí | Referencia al dato, archivo o recurso utilizado. |
 
 **Ejemplos de registros**
 
-| id_evidencia* | id_evento* | id_dato* | descripcion* | referencia* |
+| id_evidencia* | id_evento* | id_dato | descripcion* | referencia* |
 |---:|---:|---:|---|---|
-| 8001 | 7001 | 5001 | Registro de caudal identificado para revisión. | dato:5001 |
-| 8002 | 7002 | 5002 | Registro con lectura igual a cero. | dato:5002 |
+| 8001 | 7001 | 5001 | Registro de caudal utilizado para comprobar la superación del límite definido. | dato:5001 |
+| 8002 | 7002 | - | No existe lectura registrada para la hora esperada del pozo. | ausencia:2026-09-30_10:00 |
 
 ### Tabla: GESTION
 
