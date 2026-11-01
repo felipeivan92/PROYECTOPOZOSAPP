@@ -10,7 +10,7 @@ erDiagram
     POZO ||--o{ DATO_MONITOREO : registra
     POZO ||--o{ UMBRAL : define
     POZO ||--o{ EVENTO : presenta
-    DATO_MONITOREO ||--o{ EVIDENCIA : respalda
+    DATO_MONITOREO o|--o{ EVIDENCIA : respalda
     EVENTO ||--o{ EVIDENCIA : contiene
     EVENTO ||--o{ GESTION : recibe
     EVENTO ||--o| TICKET : puede_generar
@@ -166,7 +166,7 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 | id_dato* | id_pozo* | fecha_hora* | variable* | valor* | unidad* | dato_valido* | origen_dato* | referencia_origen |
 |---:|---:|---|---|---:|---|---|---|---|
 | 5001 | 101 | 2026-09-30 10:00 | Caudal | 0,72 | L/s | Sí |DGA | registros_pozo_2026_09.csv |
-| 5002 | 102 | 2026-09-30 10:00 | Caudal | 0,00 | L/s | Sí |DGA| registros_pozo_2026_09.csv |
+| 5002 | 102 | 2026-09-30 09:00 | Caudal | 0,18 | L/s | Sí | DGA | registros_pozo_2026_09.csv |
 
 ### Tabla: EVENTO
 
@@ -194,7 +194,7 @@ El estado del evento cambia de acuerdo con el avance de su revisión:
 
 | id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | criterio_deteccion* | fecha_hora_limite_gestion |
 |---:|---:|---|---|---|---|---|---|
-| 7001 | 101 | 2026-09-30 10:05 | Sobreflujo | Alta | Gestionado | Caudal 0,72 L/s superior al máximo 0,60 L/s definido para el pozo | 2026-10-03 10:05 |
+| 7001 | 101 | 2026-09-30 10:05 | sobreflujo de caudal | Alta | Gestionado | Caudal 0,72 L/s superior al máximo 0,60 L/s definido para el pozo | 2026-10-03 10:05 |
 | 7002 | 102 | 2026-09-30 10:05 | Dato faltante | Media | Gestionado | No existe lectura registrada para la hora esperada | 2026-10-03 10:05 |
 
 ### Tabla: EVIDENCIA
@@ -231,7 +231,7 @@ El estado del evento cambia de acuerdo con el avance de su revisión:
 | id_gestion* | id_evento* | id_usuario* | fecha_hora* | accion* | resultado* | comentario* |
 |---:|---:|---:|---|---|---|---|
 | 8501 | 7001 | 1 | 2026-09-30 10:20 | Validar evento | Ticket requerido | Se mantiene la condición detectada y se solicita gestionar ticket. |
-| 8502 | 7002 | 1 | 2026-09-30 10:25 | Revisar evidencia | Ticket requerido | Se confirma que la lectura debe ser revisada mediante ticket. |
+| 8502 | 7002 | 1 | 2026-09-30 10:25 | Validar evento | Ticket requerido | Se confirma que la lectura debe ser revisada mediante ticket. |
 
 ### Tabla: UMBRAL
 
@@ -269,8 +269,8 @@ Esta tabla almacena los límites utilizados por el sistema para comparar las med
 
 | id_ticket* | id_evento* | codigo_ticket* | fecha_hora_creacion* | estado* | motivo* |
 |---:|---:|---|---|---|---|
-| 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
-| 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
+| 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por sobreflujo de caudal. |
+| 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por dato faltante. |
 
 ## 3. Valores definidos para campos tipo lista
 
