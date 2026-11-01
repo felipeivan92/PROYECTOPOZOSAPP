@@ -98,7 +98,7 @@ erDiagram
 | POZO - DATO_MONITOREO | 1:N | Un pozo puede tener muchos registros de monitoreo y cada registro pertenece a un solo pozo. |
 | POZO - EVENTO | 1:N | Un pozo puede presentar varios eventos detectados en distintos momentos. |
 | EVENTO - EVIDENCIA | 1:N | Un evento puede conservar una o más evidencias asociadas. |
-| DATO_MONITOREO - EVIDENCIA | 1:N | Un registro puede utilizarse como respaldo de uno o más eventos, según la revisión realizada. |
+| DATO_MONITOREO - EVIDENCIA | 0..1:N | Una evidencia puede estar asociada a un dato de monitoreo cuando este existe. En casos como un registro faltante, la evidencia puede no tener un dato asociado. Un dato puede utilizarse como respaldo de una o más evidencias. |
 | EVENTO - GESTION | 1:N | Un evento puede recibir varias acciones o revisiones durante su seguimiento. |
 | USUARIO - GESTION | 1:N | Un usuario puede realizar varias gestiones y cada gestión queda asociada al responsable que la ejecutó. |
 | EVENTO - TICKET | 1:1 (opcional) | Un evento puede no generar ticket; cuando corresponde, queda asociado a un ticket dentro del flujo definido actualmente. |
@@ -194,7 +194,7 @@ El estado del evento cambia de acuerdo con el avance de su revisión:
 
 | id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | criterio_deteccion* | fecha_hora_limite_gestion |
 |---:|---:|---|---|---|---|---|---|
-| 7001 | 101 | 2026-09-30 10:05 | sobreflujo de caudal | Alta | Gestionado | Caudal 0,72 L/s superior al máximo 0,60 L/s definido para el pozo | 2026-10-03 10:05 |
+| 7001 | 101 | 2026-09-30 10:05 | Sobreflujo de caudal | Alta | Gestionado | Caudal 0,72 L/s superior al máximo 0,60 L/s definido para el pozo | 2026-10-03 10:05 |
 | 7002 | 102 | 2026-09-30 10:05 | Dato faltante | Media | Gestionado | No existe lectura registrada para la hora esperada | 2026-10-03 10:05 |
 
 ### Tabla: EVIDENCIA
