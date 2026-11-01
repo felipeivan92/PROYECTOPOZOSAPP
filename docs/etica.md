@@ -18,6 +18,32 @@ Cuando una condición relevante sea detectada por personal de terreno y no se en
 
 La observación podrá utilizarse como antecedente adicional durante la revisión del evento, evitando que la plataforma se transforme en la única fuente disponible para tomar decisiones.
 
+## B2 · Ficha de tratamiento de datos
+
+El formulario de registro de gestión utiliza únicamente los campos necesarios para que el analista pueda dejar trazabilidad de la revisión realizada.
+
+Los datos `id_evento` y `fecha_hora_limite_gestion` pueden mostrarse en la pantalla como información de contexto, pero no requieren ser ingresados manualmente por la persona usuaria.
+
+| Campo del formulario | Finalidad | Historia que lo justifica | Quién tiene acceso | Conservación |
+|---|---|---|---|---|
+| `accion` | Identificar la acción realizada por el analista sobre el evento revisado. | HU-03 · Registrar el resultado de la revisión. | Analista de monitoreo y supervisor autorizado. | Para el prototipo se considera su conservación junto al evento hasta 12 meses después de su cierre. |
+| `resultado` | Registrar el resultado de la revisión y permitir conocer qué decisión se adoptó sobre el evento. | HU-03 · Registrar el resultado de la revisión. | Analista de monitoreo y supervisor autorizado. | Para el prototipo se considera su conservación junto al evento hasta 12 meses después de su cierre. |
+| `comentario` | Dejar el antecedente o justificación que respalda la decisión adoptada por el analista. | HU-03 · Registrar el resultado de la revisión. | Analista de monitoreo y supervisor autorizado. | Para el prototipo se considera su conservación junto al evento hasta 12 meses después de su cierre. |
+
+### Minimización de datos
+
+El formulario no solicita nombre, RUT, teléfono u otros antecedentes personales que no sean necesarios para realizar la gestión.
+
+La identidad del usuario responsable se asociará mediante el usuario autenticado del sistema y no deberá ser escrita manualmente en el formulario.
+
+El campo `comentario` se utilizará únicamente para antecedentes necesarios para justificar la gestión. Se deberá evitar incorporar nombres, datos de contacto u otra información personal que no sea necesaria para comprender la decisión.
+
+### Criterio de conservación
+
+El plazo de 12 meses posteriores al cierre del evento se utiliza como **criterio preliminar para el prototipo** y no representa todavía una política definitiva de conservación de Codelco o Unisource.
+
+Antes de utilizar datos operacionales reales, este plazo deberá revisarse con el responsable de la información y ajustarse a las políticas aplicables al proceso.
+
 ## B4 · Sostenibilidad
 
 El equipo considera las siguientes prácticas de uso eficiente de recursos:
