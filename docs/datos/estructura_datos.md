@@ -8,6 +8,7 @@ La estructura se construyó a partir de los conceptos presentes en el caso de us
 erDiagram
     USUARIO ||--o{ GESTION : realiza
     POZO ||--o{ DATO_MONITOREO : registra
+    POZO ||--o{ UMBRAL : define
     POZO ||--o{ EVENTO : presenta
     DATO_MONITOREO ||--o{ EVIDENCIA : respalda
     EVENTO ||--o{ EVIDENCIA : contiene
@@ -28,6 +29,16 @@ erDiagram
         texto nombre_pozo
         lista estado
     }
+
+   UMBRAL {
+        numero id_umbral PK
+        numero id_pozo FK
+        lista variable
+        numero valor_maximo
+        texto unidad
+        texto fuente
+        si_no activo
+   }
 
     DATO_MONITOREO {
         numero id_dato PK
@@ -92,6 +103,7 @@ erDiagram
 | EVENTO - GESTION | 1:N | Un evento puede recibir varias acciones o revisiones durante su seguimiento. |
 | USUARIO - GESTION | 1:N | Un usuario puede realizar varias gestiones y cada gestión queda asociada al responsable que la ejecutó. |
 | EVENTO - TICKET | 1:1 (opcional) | Un evento puede no generar ticket; cuando corresponde, queda asociado a un ticket dentro del flujo definido actualmente. |
+| POZO - UMBRAL | 1:N | Un pozo puede tener uno o más límites definidos según la variable monitoreada. |
 
 > Nota: el modelo es preliminar. Las cardinalidades y campos podrán ajustarse cuando se construya el PoC y se validen las necesidades reales de almacenamiento.
 
@@ -231,4 +243,25 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 |---:|---:|---|---|---|---|
 | 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
 | 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
+
+### Tabla: UMBRAL
+
+Esta tabla almacena los límites utilizados por el sistema para comparar las mediciones de cada pozo. Para el caso de caudal, los valores provienen del archivo de límites utilizado en el proceso de monitoreo.
+
+| Campo | Tipo | Clave | Obligatorio | Descripción |
+|---|---|---|---|---|
+| id_umbral* | número | primaria | Sí | Identificador único del límite. |
+| id_pozo* | número | externa | Sí | Pozo al que corresponde el límite. |
+| variable* | lista | - | Sí | Variable sobre la cual se aplica el límite. |
+| valor_maximo* | número | - | Sí | Valor máximo utilizado para la comparación. |
+| unidad* | texto | - | Sí | Unidad en que se expresa el límite. |
+| fuente* | texto | - | Sí | Referencia al origen desde donde se obtuvo el límite. |
+| activo* | sí o no | - | Sí | Indica si el límite se encuentra vigente para el análisis. |
+
+**Ejemplos de registros**
+
+| id_umbral* | id_pozo* | variable* | valor_maximo* | unidad* | fuente* | activo* |
+|---:|---:|---|---:|---|---|---|
+| 3001 | 101 | Caudal | 0,60 | L/s | limites_dga.xlsx | Sí |
+| 3002 | 102 | Caudal | 0,20 | L/s | limites_dga.xlsx | Sí |
 
