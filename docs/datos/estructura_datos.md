@@ -59,7 +59,6 @@ erDiagram
         lista tipo_anomalia
         lista prioridad
         lista estado
-        si_no requiere_ticket
         texto criterio_deteccion
         fecha_hora fecha_hora_limite_gestion
     }
@@ -179,16 +178,15 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 | tipo_anomalia* | lista | - | Sí | Tipo de anomalía detectada. |
 | prioridad* | lista | - | Sí | Nivel de prioridad para su revisión. |
 | estado* | lista | - | Sí | Estado de revisión del evento. |
-| requiere_ticket* | sí o no | - | Sí | Indica si el evento requiere gestionar un ticket. |
 | criterio_deteccion* | texto | - | Sí | Regla o condición que provocó la detección del evento. |
 | fecha_hora_limite_gestion | fecha y hora | - | No | Fecha y hora límite definida para gestionar el evento cuando corresponda. |
 
 **Ejemplos de registros**
 
-| id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | requiere_ticket* | criterio_deteccion* | fecha_hora_limite_gestion |
-|---:|---:|---|---|---|---|---|---|---|
-| 7001 | 101 | 2026-09-30 10:05 | Valor fuera de rango | Alta | En revisión | Sí | Caudal superior al límite definido para el pozo | 2026-10-03 10:05 |
-| 7002 | 102 | 2026-09-30 10:05 | Lectura en cero | Media | Pendiente | Sí | Caudal registrado igual a cero | 2026-10-03 10:05 |
+| id_evento* | id_pozo* | fecha_hora_deteccion* | tipo_anomalia* | prioridad* | estado* | criterio_deteccion* | fecha_hora_limite_gestion |
+|---:|---:|---|---|---|---|---|---|
+| 7001 | 101 | 2026-09-30 10:05 | Sobreflujo | Alta | Gestionado | Caudal 0,72 L/s superior al máximo 0,60 L/s definido para el pozo | 2026-10-03 10:05 |
+| 7002 | 102 | 2026-09-30 10:05 | Dato faltante | Media | Gestionado | No existe lectura registrada para la hora esperada | 2026-10-03 10:05 |
 
 ### Tabla: EVIDENCIA
 
