@@ -165,8 +165,8 @@ Los registros incluidos a continuación son ejemplos ilustrativos utilizados par
 
 | id_dato* | id_pozo* | fecha_hora* | variable* | valor* | unidad* | dato_valido* | origen_dato* | referencia_origen |
 |---:|---:|---|---|---:|---|---|---|---|
-| 5001 | 101 | 2026-09-30 10:00 | Caudal | 0,72 | L/s | Sí | ARCHIVO_DGA | registros_pozo_2026_09.csv |
-| 5002 | 102 | 2026-09-30 10:00 | Caudal | 0,00 | L/s | Sí | ARCHIVO_DGA | registros_pozo_2026_09.csv |
+| 5001 | 101 | 2026-09-30 10:00 | Caudal | 0,72 | L/s | Sí |DGA | registros_pozo_2026_09.csv |
+| 5002 | 102 | 2026-09-30 10:00 | Caudal | 0,00 | L/s | Sí |DGA| registros_pozo_2026_09.csv |
 
 ### Tabla: EVENTO
 
@@ -233,24 +233,6 @@ El estado del evento cambia de acuerdo con el avance de su revisión:
 | 8501 | 7001 | 1 | 2026-09-30 10:20 | Validar evento | Ticket requerido | Se mantiene la condición detectada y se solicita gestionar ticket. |
 | 8502 | 7002 | 1 | 2026-09-30 10:25 | Revisar evidencia | Ticket requerido | Se confirma que la lectura debe ser revisada mediante ticket. |
 
-### Tabla: TICKET
-
-| Campo | Tipo | Clave | Obligatorio | Descripción |
-|---|---|---|---|---|
-| id_ticket* | número | primaria | Sí | Identificador interno del ticket. |
-| id_evento* | número | externa | Sí | Evento que dio origen al ticket. |
-| codigo_ticket* | texto | - | Sí | Código con que se identifica el ticket. |
-| fecha_hora_creacion* | fecha y hora | - | Sí | Fecha y hora de registro del ticket. |
-| estado* | lista | - | Sí | Estado actual del ticket. |
-| motivo* | texto | - | Sí | Razón por la que se generó el ticket. |
-
-**Ejemplos de registros**
-
-| id_ticket* | id_evento* | codigo_ticket* | fecha_hora_creacion* | estado* | motivo* |
-|---:|---:|---|---|---|---|
-| 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
-| 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
-
 ### Tabla: UMBRAL
 
 Esta tabla almacena los límites utilizados por el sistema para comparar las mediciones de cada pozo. Para el caso de caudal, los valores provienen del archivo de límites utilizado en el proceso de monitoreo.
@@ -271,4 +253,43 @@ Esta tabla almacena los límites utilizados por el sistema para comparar las med
 |---:|---:|---|---:|---|---|---|
 | 3001 | 101 | Caudal | 0,60 | L/s | limites_dga.xlsx | Sí |
 | 3002 | 102 | Caudal | 0,20 | L/s | limites_dga.xlsx | Sí |
+
+### Tabla: TICKET
+
+| Campo | Tipo | Clave | Obligatorio | Descripción |
+|---|---|---|---|---|
+| id_ticket* | número | primaria | Sí | Identificador interno del ticket. |
+| id_evento* | número | externa | Sí | Evento que dio origen al ticket. |
+| codigo_ticket* | texto | - | Sí | Código con que se identifica el ticket. |
+| fecha_hora_creacion* | fecha y hora | - | Sí | Fecha y hora de registro del ticket. |
+| estado* | lista | - | Sí | Estado actual del ticket. |
+| motivo* | texto | - | Sí | Razón por la que se generó el ticket. |
+
+**Ejemplos de registros**
+
+| id_ticket* | id_evento* | codigo_ticket* | fecha_hora_creacion* | estado* | motivo* |
+|---:|---:|---|---|---|---|
+| 9001 | 7001 | TICKET-EJ-001 | 2026-09-30 10:30 | Generado | Revisión de evento por valor fuera de rango. |
+| 9002 | 7002 | TICKET-EJ-002 | 2026-09-30 10:35 | Generado | Revisión de evento por lectura de caudal igual a cero. |
+
+## 3. Valores definidos para campos tipo lista
+
+Para evitar que un mismo concepto sea registrado con nombres distintos, se definen los siguientes valores para los campos de tipo lista utilizados en el modelo.
+
+| Tabla | Campo | Valores permitidos |
+|---|---|---|
+| USUARIO | rol | Analista, Supervisor |
+| POZO | estado | Activo, Inactivo |
+| UMBRAL | variable | Caudal, Totalizador, Nivel, pH, Conductividad, Batería |
+| DATO_MONITOREO | variable | Caudal, Totalizador, Nivel, pH, Conductividad, Batería |
+| DATO_MONITOREO | origen_dato | DGA, LI-COR, OSP_MANUAL |
+| EVENTO | tipo_anomalia | Sobreflujo de caudal, Dato faltante, Lectura en cero, Duplicado, Inconsistencia de totalizador, Cambio brusco |
+| EVENTO | prioridad | Alta, Media, Baja |
+| EVENTO | estado | Pendiente, En revisión, Gestionado, Cerrado |
+| GESTION | accion | Validar evento, Descartar evento, Solicitar antecedentes, Registrar observación |
+| GESTION | resultado | Ticket requerido, Sin ticket, Pendiente de antecedentes, Evento descartado |
+| TICKET | estado | Generado, En gestión, Cerrado |
+
+Los valores de `UMBRAL.variable` y `DATO_MONITOREO.variable` utilizan la misma nomenclatura para permitir la comparación directa entre una medición y su límite cuando corresponda.
+
 
