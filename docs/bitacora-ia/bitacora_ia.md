@@ -81,3 +81,64 @@ Se incorporaron indicadores para evaluar el MVP, se precisaron las capas de la s
 
 ### Cómo se verificó
 Cada modificación fue contrastada con la retroalimentación docente y con los archivos actualmente versionados en GitHub, verificando que los cambios mantuvieran coherencia con el caso de uso y el alcance definido para el proyecto.
+
+
+## Uso 6 - Revisión final del modelo y trazabilidad
+
+### Objetivo
+
+Hacer una última revisión del modelo de datos después de aplicar las observaciones de la profesora, la idea era comprobar que los ejemplos fueran coherentes entre sí y que se pudiera seguir un caso completo desde la medición de un pozo hasta la generación de un ticket.
+
+### Prompt utilizado
+
+Revisa nuestro proyecto PROYECTOPOZOSAPP después de las correcciones realizadas a partir de la retroalimentación de la profesora.
+
+Queremos comprobar que el modelo de datos y los ejemplos sean coherentes de principio a fin, recorre un caso desde el pozo y su medición, pasando por el límite utilizado para detectar la anomalía, el evento, la evidencia y la gestión, hasta llegar al ticket.
+
+Revisa especialmente las tablas POZO, UMBRAL, DATO_MONITOREO, EVENTO, EVIDENCIA, GESTION y TICKET.
+
+Comprueba que:
+
+- los límites utilizados para detectar anomalías estén realmente almacenados;
+- una evidencia pueda registrarse aunque el problema sea un dato faltante;
+- la decisión de generar un ticket ocurra después de la revisión del analista;
+- los estados del evento sean coherentes con las gestiones y tickets existentes;
+- los valores usados en los ejemplos coincidan con las listas definidas;
+- los dos casos de ejemplo cuenten la misma historia en todas las tablas;
+- desde un ticket sea posible reconstruir qué pozo, anomalía, evidencia y gestión le dieron origen.
+
+No cambies automáticamente el modelo, mas bien indica primero las inconsistencias que encuentres y explica de forma simple por qué deberían corregirse. No inventes datos que no estén respaldados por los archivos del proyecto.
+
+### Qué nos respondió la IA
+
+La revisión mostró que los dos ejemplos ya se podían seguir prácticamente de principio a fin.
+
+En el primer caso se pudo relacionar el pozo 101 con su límite de caudal de 0,60 L/s, una medición de 0,72 L/s, el evento de sobreflujo, la evidencia utilizada, la gestión realizada y el ticket generado.
+
+En el segundo caso se revisó un dato faltante. Como la lectura de las 10:00 no existe, la evidencia puede registrar directamente esa ausencia sin tener que apuntar a un dato que no existe.
+
+También aparecieron algunos detalles menores que todavía no coincidían entre sí, principalmente nombres utilizados en los ejemplos, una relación del modelo y una referencia antigua a `requiere_ticket` en la documentación de los wireframes.
+
+### Qué aceptamos o corregimos
+
+No aplicamos todo automáticamente. Primero revisamos si las observaciones tenían sentido con el modelo que ya habíamos definido.
+
+Se corrigió el nombre Sobreflujo de caudal para utilizar el mismo término en todo el modelo.
+
+También se ajustó la relación entre DATO_MONITOREO y EVIDENCIA, ya que en un caso de dato faltante puede existir una evidencia aunque no exista un registro de monitoreo asociado.
+
+Además, se eliminó de la documentación de los wireframes una referencia antigua a `requiere_ticket`, porque después de las correcciones la decisión de generar un ticket queda asociada a la revisión y gestión realizada por el analista.
+
+### Cómo lo comprobamos
+
+Para revisar que las tablas realmente estuvieran relacionadas, seguimos manualmente los dos ejemplos.
+
+Primer caso:
+
+POZO 101 → UMBRAL 3001 → DATO_MONITOREO 5001 → EVENTO 7001 → EVIDENCIA 8001 → GESTION 8501 → TICKET 9001
+
+Segundo caso:
+
+POZO 102 → lectura esperada de las 10:00 ausente → EVENTO 7002 → EVIDENCIA 8002 sin id_dato → GESTION 8502 → TICKET 9002
+
+Con este recorrido pudimos comprobar que desde el ticket se puede volver al evento que lo originó y desde ahí identificar el pozo, la evidencia y la gestión realizada.
