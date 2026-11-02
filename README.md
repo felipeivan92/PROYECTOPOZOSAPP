@@ -78,6 +78,7 @@ El proyecto se encuentra en una etapa inicial de desarrollo. Actualmente se cuen
 - maqueta digital preliminar;
 - roadmap inicial;
 - estructura preliminar de datos;
+- prototipo navegable de fidelidad media del flujo principal;
 - repositorio organizado para continuar el desarrollo.
 
 Aún no existe un MVP funcional ni una base de datos implementada.
@@ -96,6 +97,12 @@ Equipo N° 7:
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
 - [Archivo editable en Figma](https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7--copia-?node-id=0-1&t=R4K1gY5ow6aYXwvW-1)
+
+## Avance 5 · Prototipo navegable y análisis ético
+
+- [Prototipo navegable en Figma](https://www.figma.com/design/hiJAFk97pvH1wxw52zjUej/Wareframe-Aqua-Trace?node-id=0-1)
+- [Documentación del prototipo](docs/prototipo.md)
+- [Análisis ético del prototipo](docs/etica.md)
   
 ## Documentación complementaria
 

@@ -4,7 +4,7 @@
 Wireframes de baja fidelidad del flujo principal del proyecto.
 
 **Archivo editable en Figma:**  
-https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7?node-id=0-1&t=b24mgRzqm4I21QIc-1
+https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7--copia-?node-id=0-1&t=R4K1gY5ow6aYXwvW-1
 
 ## Pantallas
 
@@ -24,7 +24,7 @@ https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT/Avance-4---Wireframe-Proyect
 ### P3 · Registrar gestión
 - **Historia:** HU-03
 - **Propósito:** registrar la decisión tomada y representar el escenario alternativo cuando falta respaldo.
-- **Datos mostrados:** `id_evento`, `requiere_ticket`, `fecha_hora_limite_gestion`, `accion`, `resultado`, `comentario`.
+- **Datos mostrados:** `id_evento`, `fecha_hora_limite_gestion`, `accion`, `resultado`, `comentario`.
 - **Criterio visible:** si falta información suficiente, el caso queda Pendiente y no se permite generar gestión o ticket.
 - **Navegación:** “Volver a evidencia” lleva a P2; las opciones de registro llevan a P4 cuando corresponde.
 
