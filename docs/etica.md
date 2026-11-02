@@ -120,3 +120,28 @@ El equipo considera las siguientes prácticas de uso eficiente de recursos:
 | La priorización relega eventos que también requieren atención. | Mitigar | Mantener visibles todos los eventos y utilizar la prioridad para ordenar, no para excluir. | Responsable de diseño y experiencia de usuario. | Durante las pruebas con usuarios. |
 | Una persona no autorizada accede a información del monitoreo. | Mitigar | Incorporar autenticación y permisos según rol antes de utilizar información operacional real. | Responsable técnico del equipo. | Antes de implementar el MVP funcional. |
 | Una situación detectada en terreno no aparece en los registros digitales. | Mitigar | Mantener un canal complementario para que las observaciones de terreno puedan llegar al analista. | Responsable funcional. | Durante las pruebas y posteriormente en una eventual operación piloto. |
+
+## Integración del análisis ético en el prototipo
+
+El análisis ético permitió identificar el riesgo de que una persona usuaria continuara con la gestión de una anomalía aun cuando la evidencia disponible no fuera suficiente para respaldar la decisión.
+
+### Antes
+
+![Prototipo antes del ajuste ético](evidencias/etica_antes.jpeg)
+
+En la versión inicial del flujo no existía una respuesta específica para representar que los antecedentes disponibles eran insuficientes para continuar. El analista podía revisar la evidencia y avanzar directamente hacia el registro de la gestión.
+
+### Después
+
+![Prototipo después del ajuste ético](evidencias/etica_despues.jpeg)
+
+Se incorporó un estado explícito que informa:
+
+**Estado: Pendiente**  
+**Resultado: Respaldo insuficiente**
+
+junto al mensaje:
+
+**“Se requieren antecedentes adicionales para continuar.”**
+
+**Hallazgo ético aplicado:** se evitó que la interfaz condujera al analista a continuar con una gestión o generación de ticket cuando la evidencia disponible no permite respaldar adecuadamente la decisión. La modificación mantiene la revisión y decisión final bajo responsabilidad humana.
