@@ -196,3 +196,62 @@ Segundo caso:
 POZO 102 → lectura esperada de las 10:00 ausente → EVENTO 7002 → EVIDENCIA 8002 sin id_dato → GESTION 8502 → TICKET 9002
 
 Con este recorrido pudimos comprobar que desde el ticket se puede volver al evento que lo originó y desde ahí identificar el pozo, la evidencia y la gestión realizada.
+
+## Uso 7 - Revisión de sesgo de la prueba de usuarios
+
+### Objetivo
+
+Revisar las tareas y preguntas preparadas para el Avance 6 antes de utilizarlas, principalmente para comprobar que no estuvieran guiando a las personas hacia la respuesta esperada por el equipo.
+
+### Prompt utilizado
+
+Revisa los archivos `docs/prueba-usuarios.md` y `docs/pauta-validacion.md` del Avance 6 de Aqua Trace.
+
+Quiero comprobar que la prueba de usuarios no esté guiando a los participantes hacia la respuesta que esperamos.
+
+Revisa específicamente:
+
+- que las tareas no indiquen qué botón, pantalla o recorrido debe utilizar la persona;
+- que los escenarios no adelanten cuál debería ser la decisión correcta;
+- que las preguntas de contexto se refieran a experiencias pasadas y no a opiniones hipotéticas;
+- que los criterios de éxito sean observables durante la prueba;
+- que los umbrales estén definidos antes de ejecutar las sesiones;
+- que la pauta completa pueda realizarse en menos de 20 minutos;
+- que el consentimiento explique qué se registra, para qué se utiliza, quién tendrá acceso y cuánto tiempo se conservará;
+- que la prueba pueda mostrar que una hipótesis del equipo es incorrecta.
+
+No reescribas automáticamente los documentos. Primero indica qué partes podrían introducir sesgo, ser ambiguas o no cumplir la pauta, y explica de manera simple por qué.
+
+### Respuesta obtenida
+
+La revisión no detectó problemas importantes en la estructura de la prueba.
+
+Las tareas 1 y 2 no indican botones, pantallas ni recorridos y permiten que la persona decida cómo avanzar. Las preguntas de contexto también se encuentran formuladas sobre situaciones pasadas y no sobre opiniones hipotéticas.
+
+Los criterios de éxito pueden observarse durante la sesión y los umbrales quedaron definidos antes de realizar las pruebas. La duración planificada es de 19 minutos y el consentimiento informa qué se registrará, para qué se utilizará la evidencia, quién tendrá acceso y durante cuánto tiempo se conservará.
+
+Se detectó un detalle en la tercera tarea. El escenario indicaba previamente que el evento contaba con antecedentes suficientes, lo que podía entregar una pista sobre la condición del caso antes de que la persona realizara la tarea.
+
+### Qué aceptamos y qué corregimos
+
+El equipo consideró válida la observación sobre la tercera tarea.
+
+Se eliminó del escenario la frase que indicaba que el evento contaba con antecedentes suficientes. De esta manera, la persona recibe solamente el contexto necesario y debe interpretar por sí misma la información presentada en el prototipo.
+
+No se modificaron las tareas 1 y 2 porque en la revisión no se identificaron indicaciones sobre botones, pantallas o decisiones esperadas.
+
+### Cómo lo verificamos
+
+Después del ajuste se volvieron a leer las tres tareas considerando qué información recibiría una persona que no conoce el diseño del prototipo.
+
+Se comprobó que:
+
+- ninguna tarea indica qué botón utilizar;
+- no se menciona la pantalla a la que debe dirigirse;
+- la segunda tarea no informa previamente si la evidencia es suficiente o insuficiente;
+- la tercera tarea ya no indica previamente cuál es la condición de los antecedentes;
+- las preguntas de contexto se refieren a experiencias anteriores;
+- los umbrales permanecen definidos antes de ejecutar la prueba;
+- y la suma de los tiempos de la pauta se mantiene en 19 minutos.
+
+Con esta revisión se buscó que la prueba permita observar dificultades reales y no únicamente confirmar el recorrido esperado por el equipo.
