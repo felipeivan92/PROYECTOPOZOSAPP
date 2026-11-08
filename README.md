@@ -110,3 +110,8 @@ Equipo N° 7:
 - [Herramientas de la solución](docs/herramientas.md)
 - [Roadmap actualizado](docs/roadmap.md)
 - [Bitácora de uso de IA](docs/bitacora-ia/bitacora_ia.md)
+
+## Avance 6 · Diseño de prueba de usuarios
+
+- [Diseño de prueba de usuarios](docs/prueba-usuarios.md)
+- [Pauta de validación](docs/pauta-validacion.md)
