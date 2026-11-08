@@ -81,7 +81,7 @@ Al menos 4 de 5 personas del perfil usuario completan la tarea sin ayuda en un m
 **HU asociadas:** HU-03 · Registrar el resultado de la revisión y HU-04 · Verificar el cierre y la trazabilidad.
 
 **Escenario:**  
-Terminaste de revisar un evento que cuenta con antecedentes suficientes y necesitas dejar registrada la decisión tomada para mantener la trazabilidad del caso.
+Terminaste de revisar un evento y necesitas dejar registrada la decisión tomada para mantener la trazabilidad del caso.
 
 **Objetivo:**  
 Registrar el resultado de la revisión y comprobar posteriormente que la gestión quedó asociada al evento.
