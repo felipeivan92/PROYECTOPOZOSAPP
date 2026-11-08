@@ -12,7 +12,7 @@ Creemos que una persona con experiencia en monitoreo de datos podrá identificar
 
 Lo sabremos cuando al menos 4 de 5 personas del perfil usuario completen cada una de las tareas principales sin ayuda y dentro de los tiempos definidos antes de realizar la prueba.
 
-Además, al finalizar la sesión se aplicará el cuestionario SUS para conocer la percepción general de facilidad de uso. Como referencia interna del equipo se considerará satisfactorio obtener un promedio igual o superior a 70 puntos.
+Además, al finalizar la sesión se aplicará el cuestionario SUS para conocer la percepción general de facilidad de uso. Como medida complementaria de satisfacción se utilizará el cuestionario SUS al finalizar la sesión.
 
 ### Alcance
 
@@ -99,20 +99,38 @@ Al menos 4 de 5 personas del perfil usuario completan la tarea sin ayuda en un m
 
 ### Métricas de la prueba
 
-| Métrica | Qué se registrará |
+Para que el resultado de cada tarea sea fácil de registrar y comparar, se utilizará una escala simple de 0 a 3 puntos.
+
+| Resultado observado | Puntaje |
+|---|---:|
+| Completa la tarea sin ayuda, dentro del tiempo y sin dificultades relevantes | 3 puntos |
+| Completa la tarea sin ayuda, pero presenta una duda, desvío u observación que dificulta el recorrido | 2 puntos |
+| Completa la tarea, pero necesita ayuda del facilitador o presenta varias dificultades | 1 punto |
+| No logra completar la tarea | 0 puntos |
+
+Cada tarea tendrá un máximo de 3 puntos. Como la prueba considera tres tareas, cada participante podrá obtener un máximo de 9 puntos.
+
+### Escala general por participante
+
+| Puntaje total | Interpretación |
 |---|---|
-| Eficacia | Si la persona completa o no cada tarea sin ayuda. |
-| Tiempo | Minutos y segundos utilizados en cada tarea. |
-| Ayudas | Cantidad de veces que necesita orientación para continuar. |
-| Desvíos | Acciones o recorridos que no contribuyen a completar la tarea. |
-| Satisfacción | Resultado del cuestionario SUS al finalizar la sesión. |
+| 8 a 9 puntos | El flujo se entiende y se completa con facilidad. |
+| 6 a 7 puntos | El flujo se entiende, pero existen algunas dificultades que conviene revisar. |
+| 4 a 5 puntos | El flujo se entiende solo parcialmente y requiere mejoras. |
+| 0 a 3 puntos | El flujo presenta dificultades importantes para ser completado. |
 
-Se considerará ayuda cuando el facilitador tenga que indicar dónde continuar, qué opción seleccionar o cómo completar una acción.
+Una observación solo disminuirá el puntaje cuando corresponda a una dificultad real de uso, por ejemplo una duda relevante, un desvío, información que no logra encontrar o una acción que no entiende. Los comentarios generales que no afecten el recorrido se registrarán, pero no descontarán puntos.
 
-Una aclaración sobre el texto de la tarea que no entregue información sobre la interfaz se registrará aparte y no se considerará automáticamente como ayuda.
+Además del puntaje, durante cada tarea se registrará:
 
-Como criterio general previo a la prueba, se considerará satisfactorio que al menos 4 de 5 personas del perfil usuario completen cada tarea sin ayuda y dentro del tiempo definido.
+- el tiempo utilizado;
+- las ayudas solicitadas;
+- los desvíos observados;
+- y las dificultades o comentarios relevantes.
 
+Una tarea se considerará validada cuando al menos 4 de 5 personas del perfil usuario logren completarla sin ayuda y dentro del tiempo definido previamente.
+
+Al finalizar la sesión se aplicará el cuestionario SUS como medida complementaria de satisfacción. Su resultado se registrará por separado y no modificará el puntaje obtenido en las tareas.
 ---
 
 ## 3. Perfiles y reclutamiento
@@ -202,11 +220,19 @@ Los participantes se identificarán mediante códigos como `U01`, `S01` o `T01`.
 
 ### Planilla de registro
 
-| Participante | Tarea | Minuto | Observado | Interpretado | Severidad |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+| Participante | Tarea | Tiempo | Puntaje | Observado | Interpretado | Severidad |
+|---|---|---|---:|---|---|---|
+|  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |
+
+El puntaje se asignará al terminar cada tarea utilizando la escala definida anteriormente.
+
+En **Observado** se anotará lo que la persona efectivamente hizo o dijo.
+
+En **Interpretado** se registrará posteriormente la conclusión del equipo sobre lo observado.
+
+La severidad se utilizará para clasificar el problema como **Bloquea**, **Entorpece** o **Estético**.
 
 En **Observado** se registrará lo que la persona efectivamente hizo o dijo.
 
