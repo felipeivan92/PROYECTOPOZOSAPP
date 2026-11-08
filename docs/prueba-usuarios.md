@@ -97,41 +97,92 @@ Al menos 4 de 5 personas del perfil usuario completan la tarea sin ayuda en un m
 
 ---
 
-### Métricas de la prueba
+### Métricas generales de la prueba
 
-Para que el resultado de cada tarea sea fácil de registrar y comparar, se utilizará una escala simple de 0 a 3 puntos.
+La prueba considerará tres tipos de métricas:
 
-| Resultado observado | Puntaje |
-|---|---:|
-| Completa la tarea sin ayuda, dentro del tiempo y sin dificultades relevantes | 3 puntos |
-| Completa la tarea sin ayuda, pero presenta una duda, desvío u observación que dificulta el recorrido | 2 puntos |
-| Completa la tarea, pero necesita ayuda del facilitador o presenta varias dificultades | 1 punto |
-| No logra completar la tarea | 0 puntos |
+- **Eficacia:** se registrará si la persona logra completar o no cada tarea sin ayuda.
+- **Eficiencia:** se registrará el tiempo utilizado, las ayudas solicitadas y los desvíos observados durante cada tarea.
+- **Satisfacción:** se evaluará al finalizar la sesión mediante el cuestionario SUS.
 
-Cada tarea tendrá un máximo de 3 puntos. Como la prueba considera tres tareas, cada participante podrá obtener un máximo de 9 puntos.
+Como criterio previo a la prueba, se considerará satisfactorio que al menos 4 de 5 personas del perfil usuario completen cada tarea sin ayuda y dentro del tiempo definido.
 
-### Escala general por participante
+Además, el resultado del cuestionario SUS se calculará en una escala de 0 a 100. Como criterio definido por el equipo para esta prueba, se considerará satisfactorio obtener un promedio igual o superior a 70 puntos.
 
-| Puntaje total | Interpretación |
-|---|---|
-| 8 a 9 puntos | El flujo se entiende y se completa con facilidad. |
-| 6 a 7 puntos | El flujo se entiende, pero existen algunas dificultades que conviene revisar. |
-| 4 a 5 puntos | El flujo se entiende solo parcialmente y requiere mejoras. |
-| 0 a 3 puntos | El flujo presenta dificultades importantes para ser completado. |
+### Cálculo del cuestionario SUS
 
-Una observación solo disminuirá el puntaje cuando corresponda a una dificultad real de uso, por ejemplo una duda relevante, un desvío, información que no logra encontrar o una acción que no entiende. Los comentarios generales que no afecten el recorrido se registrarán, pero no descontarán puntos.
+El cuestionario SUS contiene 10 afirmaciones. Cada una se responde utilizando una escala de 1 a 5:
 
-Además del puntaje, durante cada tarea se registrará:
+| Respuesta | Significado |
+|---:|---|
+| 1 | Totalmente en desacuerdo |
+| 2 | En desacuerdo |
+| 3 | Ni de acuerdo ni en desacuerdo |
+| 4 | De acuerdo |
+| 5 | Totalmente de acuerdo |
 
-- el tiempo utilizado;
-- las ayudas solicitadas;
-- los desvíos observados;
-- y las dificultades o comentarios relevantes.
+Para obtener el puntaje SUS, las respuestas no se suman directamente.
+
+En las preguntas impares (1, 3, 5, 7 y 9), al valor respondido se le resta 1.
+
+**Puntaje = respuesta - 1**
+
+En las preguntas pares (2, 4, 6, 8 y 10), el valor respondido se resta de 5.
+
+**Puntaje = 5 - respuesta**
+
+De esta manera, cada pregunta aporta entre 0 y 4 puntos.
+
+| Respuesta | Pregunta impar | Pregunta par |
+|---:|---:|---:|
+| 1 | 0 | 4 |
+| 2 | 1 | 3 |
+| 3 | 2 | 2 |
+| 4 | 3 | 1 |
+| 5 | 4 | 0 |
+
+Una vez obtenidos los puntos de las 10 preguntas, se suman y el resultado se multiplica por 2,5.
+
+**SUS = suma de los puntos x 2,5**
+
+El resultado final queda expresado entre 0 y 100 puntos.
+
+### Ejemplo de cálculo
+
+Si una persona responde:
+
+| Pregunta | Respuesta | Puntaje obtenido |
+|---:|---:|---:|
+| 1 | 4 | 3 |
+| 2 | 2 | 3 |
+| 3 | 4 | 3 |
+| 4 | 2 | 3 |
+| 5 | 4 | 3 |
+| 6 | 2 | 3 |
+| 7 | 4 | 3 |
+| 8 | 2 | 3 |
+| 9 | 4 | 3 |
+| 10 | 2 | 3 |
+
+La suma de los puntajes es:
+
+**30 puntos**
+
+Luego:
+
+**30 x 2,5 = 75 puntos SUS**
+
+En este ejemplo, el participante obtiene un resultado SUS de **75 puntos**.
+
+### Criterio general de la prueba
+
+La eficacia se medirá según la cantidad de tareas completadas sin ayuda.
+
+La eficiencia se registrará mediante el tiempo utilizado en cada tarea, las ayudas solicitadas y los desvíos observados.
 
 Una tarea se considerará validada cuando al menos 4 de 5 personas del perfil usuario logren completarla sin ayuda y dentro del tiempo definido previamente.
 
-Al finalizar la sesión se aplicará el cuestionario SUS como medida complementaria de satisfacción. Su resultado se registrará por separado y no modificará el puntaje obtenido en las tareas.
----
+La satisfacción se evaluará mediante el cuestionario SUS al finalizar la sesión. El resultado SUS se registrará en una escala de 0 a 100 puntos utilizando el procedimiento explicado anteriormente.
 
 ## 3. Perfiles y reclutamiento
 
