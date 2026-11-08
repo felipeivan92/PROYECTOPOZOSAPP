@@ -57,7 +57,7 @@ Estás revisando un evento y necesitas comprobar los antecedentes disponibles an
 
 ### Tarea 3 · 4 min
 
-Terminaste de revisar un evento que cuenta con antecedentes suficientes y necesitas dejar registrada la decisión tomada.
+Terminaste de revisar un evento y necesitas dejar registrada la decisión tomada.
 
 **Realiza el registro correspondiente y comprueba posteriormente qué ocurrió con esa gestión.**
 
