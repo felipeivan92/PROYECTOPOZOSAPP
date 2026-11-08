@@ -20,11 +20,11 @@ La prueba busca comprobar si el flujo principal del prototipo se entiende y pued
 
 Durante la prueba se observará si la persona logra:
 
-- identificar qué evento requiere atención;
-- revisar la información y evidencia disponible;
-- decidir qué corresponde hacer con el caso;
-- registrar la gestión realizada;
-- reconocer posteriormente qué ocurrió con el evento.
+1 identificar qué evento requiere atención
+2 revisar la información y evidencia disponible
+3 decidir qué corresponde hacer con el caso
+4 registrar la gestión realizada
+5 reconocer posteriormente qué ocurrió con el evento.
 
 Esta prueba no permite comprobar que Aqua Trace funcione técnicamente, que las reglas de detección calculen correctamente las anomalías, que exista una conexión real con DGA o LI-COR ni que los tickets sean enviados efectivamente a otro sistema.
 
