@@ -23,23 +23,25 @@ https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyect
 
 ### P3 · Registrar gestión
 - **Historia:** HU-03
-- **Propósito:** registrar la decisión tomada y representar el escenario alternativo cuando falta respaldo.
+- **Propósito**: registrar la decisión tomada y representar el escenario alternativo cuando falta respaldo.
 - **Datos mostrados:** `id_evento`, `fecha_hora_limite_gestion`, `accion`, `resultado`, `comentario`.
 - **Criterio visible:** si falta información suficiente, el caso queda Pendiente y no se permite generar gestión o ticket.
 - **Navegación:** “Volver a evidencia” lleva a P2; las opciones de registro llevan a P4 cuando corresponde.
 
 ### P4 · Confirmación y trazabilidad
 - **Historia:** HU-04
-- **Propósito:** confirmar que la anomalía quedó gestionada y trazable.
+- **Propósito:** mostrar cómo quedó gestionado el caso, para que el analista pueda retomar su seguimiento sin reconstruir lo ocurrido en revisiones anteriores.
 - **Datos mostrados:** `codigo_ticket`, `fecha_hora_creacion`, `estado`, `motivo`, `accion`, `resultado`, `comentario`.
-- **Criterio visible:** el analista ve la anomalía gestionada, el estado actualizado y el ticket o respaldo correspondiente.
+- **Criterio visible:** eel analista puede identificar qué ocurrió con el evento, cuál es su estado actual y qué ticket o respaldo quedó asociado.
 - **Navegación:** “Ver eventos” lleva a P1; “Ver detalle” lleva a P2.
 
-## Archivos a exportar desde Figma
+## Wireframes disponibles
 
-Antes de cerrar la entrega, exportar las cuatro pantallas como PNG y guardarlas en esta carpeta con estos nombres:
+En esta carpeta se mantienen las cuatro pantallas utilizadas para representar el flujo principal del prototipo:
 
-P1 · Eventos priorizados.png
-P2 · Detalle de la anomalía.png
-P3 · Registrar gestión.png
-P4 · Confirmación y trazabilidad.png
+- `P1 · Eventos priorizados.png`
+- `P2 · Detalle de la anomalía.png`
+- `P3 · Registrar gestión.png`
+- `P4 · Confirmación y trazabilidad.png`
+
+Estas imágenes corresponden a los wireframes desarrollados para el Avance 4 y se conservan como parte del historial del proyecto. Los ajustes posteriores del flujo se encuentran reflejados en el prototipo navegable.
