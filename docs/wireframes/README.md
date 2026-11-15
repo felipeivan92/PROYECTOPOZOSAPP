@@ -35,11 +35,13 @@ https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyect
 - **Criterio visible:** el analista ve la anomalía gestionada, el estado actualizado y el ticket o respaldo correspondiente.
 - **Navegación:** “Ver eventos” lleva a P1; “Ver detalle” lleva a P2.
 
-## Archivos a exportar desde Figma
+## Wireframes disponibles
 
-Antes de cerrar la entrega, exportar las cuatro pantallas como PNG y guardarlas en esta carpeta con estos nombres:
+En esta carpeta se mantienen las cuatro pantallas utilizadas para representar el flujo principal del prototipo:
 
-P1 · Eventos priorizados.png
-P2 · Detalle de la anomalía.png
-P3 · Registrar gestión.png
-P4 · Confirmación y trazabilidad.png
+- `P1 · Eventos priorizados.png`
+- `P2 · Detalle de la anomalía.png`
+- `P3 · Registrar gestión.png`
+- `P4 · Confirmación y trazabilidad.png`
+
+Estas imágenes corresponden a los wireframes desarrollados para el Avance 4 y se conservan como parte del historial del proyecto. Los ajustes posteriores del flujo se encuentran reflejados en el prototipo navegable.
