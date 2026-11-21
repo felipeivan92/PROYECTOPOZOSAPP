@@ -24,3 +24,8 @@ Thumbs.db
 *.log
 *.tmp
 ~$*
+
+# Base local de Aqua Trace y estado de Vercel
+*.sqlite
+*.sqlite-*
+.vercel/

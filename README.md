@@ -63,9 +63,30 @@ El supervisor o jefatura responsable del servicio de monitoreo de Unisource vali
 
 ## Cómo se instala y se ejecuta
 
-En esta etapa todavía no existe una versión ejecutable de la solución. El proyecto se encuentra en fase de diseño y estructuración inicial.
+La PoC permite registrar una gestión sobre un evento de ejemplo, con acción, resultado y comentario, y obtener un folio vinculado al evento. El backend valida la solicitud y permite guardar únicamente cuando el evento tiene respaldo suficiente.
 
-Cuando se implemente el primer prototipo funcional, esta sección se actualizará con los requisitos, dependencias y pasos necesarios para instalarlo y ejecutarlo.
+1. Clona este repositorio y abre una terminal en su raíz.
+2. Instala Node.js 24. El proyecto usa sus módulos incorporados.
+3. Ejecuta `npm run dev` y abre <http://127.0.0.1:3000>. La app crea `aqua-local.sqlite` con dos eventos ficticios. Este modo funciona sin credenciales.
+4. Para verificar los casos de backend y persistencia, ejecuta `npm test`.
+
+**Caso exitoso.** Selecciona el evento 7001, elige «Validar evento» y «Sin ticket», escribe «Se revisó la lectura de ejemplo» y presiona «Guardar gestión». La pantalla indica el evento y el folio del registro.
+
+**Caso de error.** Elige el evento 7002. La pantalla muestra «Pendiente» y «Se requieren antecedentes adicionales para continuar». El guardado queda deshabilitado. Los pasos para repetir el rechazo enviando una petición directa al backend y comprobar el almacenamiento están en [la evidencia de arquitectura](docs/arquitectura.md#evidencia).
+
+### Publicación de la PoC
+
+- **Dirección pública en Vercel:** pendiente de incorporar después del despliegue de producción desde `main`.
+- **Video de 1 a 2 minutos:** pendiente de incorporar después de probar la dirección de producción. El enlace debe permitir el acceso a la profesora.
+
+Pasos para publicar:
+
+1. Crea una base exclusiva para la demo en [Turso](https://docs.turso.tech/) y ejecuta las sentencias de [src/datos.sql](src/datos.sql) en su consola SQL. El script se puede volver a ejecutar y conserva los registros ya creados.
+2. Importa el repositorio en Vercel. Selecciona la raíz del repositorio, el preset `Other`, Node.js 24 y `main` como rama de producción. El archivo `vercel.json` indica dónde están los archivos públicos.
+3. En las variables de entorno de Vercel, para **Production**, configura `TURSO_DATABASE_URL` (URL de la base de demo) y `TURSO_AUTH_TOKEN` (token servidor de esa base con permisos de escritura). `.env.example` enumera las variables. El código del navegador no las usa.
+4. Una vez integrado el PR de `dev` a `main`, abre el dominio de producción en incógnito. Si pide cuenta de Vercel, revisa la protección de ese despliegue. Prueba en producción el éxito y el error, contrasta el folio con la base y agrega este enlace y el del video al README.
+
+Para el video, muestra la URL abierta en incógnito, guarda una gestión del evento 7001 y muestra su folio. Luego intenta guardar con el comentario vacío para mostrar el error debajo del campo. Puedes cerrar mostrando el bloqueo del evento 7002. Graba la pantalla y explica el recorrido con tu voz.
 
 ## En qué estado está
 
@@ -81,7 +102,7 @@ El proyecto se encuentra en una etapa inicial de desarrollo. Actualmente se cuen
 - prototipo navegable de fidelidad media del flujo principal;
 - repositorio organizado para continuar el desarrollo.
 
-Aún no existe un MVP funcional ni una base de datos implementada.
+La PoC del Avance 7 implementa un registro de gestión con una base de demostración. El alcance restante del MVP continúa en diseño.
 
 ## Quiénes la desarrollan
 
@@ -96,7 +117,7 @@ Equipo N° 7:
 
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
-- [Archivo editable en Figma]([https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7--copia-?node-id=0-1&t=R4K1gY5ow6aYXwvW-1](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-Act.Obs5?node-id=0-1&t=gDEEILfUkMw6wbEt-1))
+- [Archivo editable en Figma](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/Edici%C3%B3n-V15112026?node-id=42-288&t=HELTaRUcocEWdTAl-1)
 
 ## Avance 5 · Prototipo navegable y análisis ético
 
@@ -109,9 +130,12 @@ Equipo N° 7:
 - [Retroalimentación del Avance 3](docs/unidad1/retroalimentacion_avance3.md)
 - [Herramientas de la solución](docs/herramientas.md)
 - [Roadmap actualizado](docs/roadmap.md)
-- [Bitácora de uso de IA](docs/bitacora-ia/bitacora_ia.md)
 
 ## Avance 6 · Diseño de prueba de usuarios
 
 - [Diseño de prueba de usuarios](docs/prueba-usuarios.md)
 - [Pauta de validación](docs/pauta-validacion.md)
+
+## Avance 7 · Arquitectura y prueba de concepto
+
+- [Diagrama de componentes, camino delgado y casos de prueba](docs/arquitectura.md)

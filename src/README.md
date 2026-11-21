@@ -1,7 +1,9 @@
-# Código de la solución
+# Código de la prueba de concepto
 
-Esta carpeta contendrá el código fuente de la solución.
+- `public/` contiene el formulario, sus estilos y el código que ejecuta el navegador.
+- `gestion.mjs` valida la solicitud en el servidor y guarda la decisión.
+- `datos.sql` define la base y carga dos eventos ficticios.
+- `local.mjs` permite ejecutar el flujo con Node.js y SQLite local.
+- `gestion.test.mjs` reproduce el guardado, los rechazos y el reintento.
 
-En el Avance 3 todavía no existe una versión ejecutable, por lo que se mantiene este archivo para documentar el propósito de la carpeta y permitir que `src/` quede versionada en GitHub.
-
-Cuando comience el desarrollo del PoC/MVP, el código de frontend, backend y otros componentes se organizará desde esta ubicación.
+El punto de entrada de Vercel está en `../api/gestion.mjs`. Para iniciar la PoC, sigue el [README principal](../README.md).

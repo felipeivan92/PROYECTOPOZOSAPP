@@ -1,0 +1,12 @@
+{
+  "name": "aqua-trace-poc",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "node src/local.mjs",
+    "test": "node --test src/gestion.test.mjs"
+  }
+}
