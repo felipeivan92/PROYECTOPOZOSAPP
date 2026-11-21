@@ -255,3 +255,31 @@ Se comprobó que:
 - y la suma de los tiempos de la pauta se mantiene en 19 minutos.
 
 Con esta revisión se buscó que la prueba permita observar dificultades reales y no únicamente confirmar el recorrido esperado por el equipo.
+
+## Uso 8 - Revisión de las observaciones del Avance 5 sobre el prototipo
+
+### Objetivo
+
+Ordenar las observaciones de la profesora sobre el Avance 5 en una lista clara de los cambios que había que hacer en Figma. Como el archivo tenía muchas pantallas, se quiso saber con exactitud qué modificar en cada una, por ejemplo cambiar el color de los botones hasta llegar a 4,5:1 de contraste y volver a medir.
+
+### Prompt utilizado
+
+Por favor, revisa el archivo PDF de nuestro wireframe y las observaciones enviadas por la profesora sobre el Avance 5: [Insertar aquí las observaciones de la profesora] El objetivo de esta revisión es estructurar con claridad los cambios exactos que debo realizar en Figma, ya que son muchas pantallas y necesito saber qué modificaciones considerar.
+
+(En el lugar indicado entre corchetes se pegó el correo de la profesora con sus observaciones del Avance 5.)
+
+### Qué nos respondió la IA
+
+La IA ordenó las observaciones de la profesora en una lista de cambios concretos para Figma: qué pantallas eliminar (inicio de sesión, recuperación de contraseña, inicio, perfil de usuario, seguimiento del ticket y cierre de sesión), qué estados agregar (carga, vacío y error del formulario), qué etiquetas pasar a lenguaje del analista, qué color de acción unificar y qué botones cambiar de color hasta llegar a 4,5:1 de contraste para luego volver a medir.
+
+### Qué aceptamos o corregimos
+
+La IA sugirió ideas, pero las decisiones las tomó el equipo. Se mantuvo en el prototipo únicamente la información que el analista de monitoreo había indicado que necesitaba. Se eliminaron las pantallas sin historia de usuario, se agregaron los estados y el error del formulario, se redactaron las etiquetas en lenguaje del analista y se unificó el color de acción en un solo azul.
+
+### Cómo lo comprobamos
+
+Se compararon los cambios con el correo de la profesora, punto por punto, y se recorrió el prototipo para comprobar que cada camino alternativo se pudiera seguir.
+
+Los textos de las secciones de contraste, sistema mínimo y actualización de `etica.md` y `prototipo.md` se redactaron con apoyo de la IA, a partir de las mediciones y de lo que el equipo describió, y el equipo los revisó antes de subirlos.
+
+Para el contraste se pidió a la IA medir los colores de los botones en la exportación del prototipo. Midió 2,54:1 para el texto blanco sobre el turquesa anterior, cifra que coincide con el 2,5:1 que había medido la profesora. Después del cambio, el azul de acción dio 6,70:1, sobre el mínimo de 4,5:1.

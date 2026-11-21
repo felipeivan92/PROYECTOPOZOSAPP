@@ -54,9 +54,25 @@ La revisión se realizó sobre la versión navegable del prototipo Aqua Trace di
 |---|---|
 | Tamaño de elementos interactivos | Los botones y controles navegables del flujo principal mantienen áreas interactivas de al menos 24 x 24 px. |
 | Estados mediante texto y color | Los estados se identifican mediante texto, por ejemplo `Pendiente`, `En revisión` y `Generado`, evitando depender únicamente del color. |
-| Etiquetas visibles | Los campos utilizados para registrar una gestión mantienen etiquetas visibles como `accion`, `resultado` y `comentario`. |
+| Etiquetas visibles | Los campos de Registrar gestión mantienen etiquetas visibles y redactadas para la persona usuaria: «Acción realizada», «Resultado de la revisión» y «Comentario de la decisión». |
 | Navegación | Las pantallas principales incluyen acciones visibles para avanzar o regresar dentro del flujo. |
-| Contraste | El diseño utiliza texto sobre fondos diferenciados para facilitar la lectura. Este criterio deberá volver a validarse si se modifica la paleta visual del prototipo. |
+| Contraste | Cumple en todos los elementos activos del flujo principal; el detalle de las mediciones se presenta en la tabla siguiente. |
+
+#### Revisión de contraste
+
+Se midió la razón de contraste entre texto y fondo sobre la exportación del prototipo, siguiendo la fórmula de WCAG 2.1 y exigiendo 4,5:1 para texto normal.
+
+| Elemento | Texto | Fondo | Contraste | Resultado |
+|---|---|---|---|---|
+| Botones primarios y ítem activo del menú | `#FFFFFF` | `#1D4ED8` | 6,70:1 | Cumple |
+| Botones secundarios (con contorno) | `#1D4ED8` | `#FFFFFF` | 6,70:1 | Cumple |
+| Menú lateral | `#FFFFFF` | `#0B2A4A` | 14,54:1 | Cumple |
+| Texto principal | `#1F2937` | `#FFFFFF` / `#F8FAFC` | 14,68:1 / 14,03:1 | Cumple |
+| Texto secundario | `#475569` | `#FFFFFF` / `#F8FAFC` | 7,58:1 / 7,24:1 | Cumple |
+| Mensajes de alerta y error | `#B91C1C` | `#FFFFFF` / `#F8FAFC` | 6,47:1 / 6,18:1 | Cumple |
+| Botones «Todos los pozos» y «Ninguno» en el estado Cargando | `#FBFCFD` | `#8AA3E9` | 2,41:1 | No cumple; son controles deshabilitados, que WCAG exceptúa del criterio de contraste |
+
+**Hallazgo:** en la versión anterior del prototipo, el texto blanco sobre el turquesa `#20B5AD` de botones como «Continuar gestión» tenía 2,54:1, el verde `#009951` tenía cerca de 3,5:1 y el gris `#748B99` tenía 3,56:1, por lo que no cumplían. Se reemplazaron por el azul de acción `#1D4ED8`.
 
 ### Sesgo asociado a la priorización
 
@@ -115,11 +131,20 @@ El equipo considera las siguientes prácticas de uso eficiente de recursos:
 
 | Riesgo | Tratamiento | Medida propuesta | Responsable | Momento de revisión |
 |---|---|---|---|---|
-| Un límite o regla incorrecta genera una falsa anomalía o impide detectar una condición real. | Mitigar | Validar los umbrales y reglas utilizadas por el sistema contra la fuente autorizada antes de incorporarlos al análisis. | Responsable de datos del equipo. | Antes de las pruebas con usuarios y cuando se modifique una regla. |
-| La evidencia disponible no es suficiente y se registra una gestión incorrecta. | Mitigar | Mantener el evento pendiente y evitar continuar con la gestión hasta contar con antecedentes suficientes. | Responsable funcional del flujo. | Durante las pruebas del prototipo. |
-| La priorización relega eventos que también requieren atención. | Mitigar | Mantener visibles todos los eventos y utilizar la prioridad para ordenar, no para excluir. | Responsable de diseño y experiencia de usuario. | Durante las pruebas con usuarios. |
-| Una persona no autorizada accede a información del monitoreo. | Mitigar | Incorporar autenticación y permisos según rol antes de utilizar información operacional real. | Responsable técnico del equipo. | Antes de implementar el MVP funcional. |
-| Una situación detectada en terreno no aparece en los registros digitales. | Mitigar | Mantener un canal complementario para que las observaciones de terreno puedan llegar al analista. | Responsable funcional. | Durante las pruebas y posteriormente en una eventual operación piloto. |
+| Un límite o regla incorrecta genera una falsa anomalía o impide detectar una condición real. | Mitigar | Validar los umbrales y reglas utilizadas por el sistema contra la fuente autorizada antes de incorporarlos al análisis. | Omar Carvajal Sepúlveda. | Antes de las pruebas con usuarios y cuando se modifique una regla. |
+| La evidencia disponible no es suficiente y se registra una gestión incorrecta. | Mitigar | Mantener el evento pendiente y evitar continuar con la gestión hasta contar con antecedentes suficientes. | Pablo Urrutia Albornoz. | Durante las pruebas del prototipo. |
+| La priorización relega eventos que también requieren atención. | Mitigar | Mantener visibles todos los eventos y utilizar la prioridad para ordenar, no para excluir. | Pablo Urrutia Albornoz. | Durante las pruebas con usuarios. |
+| Una persona no autorizada accede a información del monitoreo. | Mitigar | Incorporar autenticación y permisos según rol antes de utilizar información operacional real. | Edgar Romero Sayritupac. | Antes de implementar el MVP funcional. |
+| Una situación detectada en terreno no aparece en los registros digitales. | Mitigar | Mantener un canal complementario para que las observaciones de terreno puedan llegar al analista. | Felipe Hernández Álvarez. | Durante las pruebas y posteriormente en una eventual operación piloto. |
+
+### Distribución de responsabilidades
+
+Cada riesgo tiene como responsable a un integrante del equipo, según el trabajo que realiza dentro del proyecto:
+
+- **Pablo Urrutia Albornoz:** trabaja principalmente en Figma y revisa los textos y los enlaces del repositorio. Es responsable de los riesgos asociados al flujo y al diseño del prototipo.
+- **Edgar Romero Sayritupac:** revisa los archivos que se incorporan a `main`. Es responsable del riesgo de acceso no autorizado, que corresponde a la parte técnica.
+- **Felipe Hernández Álvarez:** mantiene actualizado el tablero de Notion con las tareas realizadas. Es responsable de dar seguimiento al canal complementario para las observaciones de terreno.
+- **Omar Carvajal Sepúlveda:** revisa el trabajo del equipo y discute las ideas con los demás integrantes. Es responsable de validar los límites y reglas contra la fuente autorizada.
 
 ## Integración del análisis ético en el prototipo
 
@@ -145,3 +170,23 @@ junto al mensaje:
 **“Se requieren antecedentes adicionales para continuar.”**
 
 **Hallazgo ético aplicado:** se evitó que la interfaz condujera al analista a continuar con una gestión o generación de ticket cuando la evidencia disponible no permite respaldar adecuadamente la decisión. La modificación mantiene la revisión y decisión final bajo responsabilidad humana.
+
+### Actualización posterior a la retroalimentación del Avance 5
+
+Después de recibir las observaciones de la docente, el equipo revisó cada una de ellas y trabajó sobre una copia completa del prototipo anterior: se eliminó lo que estaba de más y se incorporaron los cambios solicitados. En el proceso se simplificó la vista y se modificaron algunos íconos, botones y otros elementos de formato.
+
+Los cambios principales fueron:
+
+- Se eliminaron las pantallas que no provenían de una historia de usuario: inicio de sesión, recuperación de contraseña, inicio, perfil de usuario, seguimiento del ticket y cierre de sesión. El prototipo parte ahora en Eventos priorizados.
+- Se agregaron los estados de carga, vacío y error de formulario, y se redactaron las etiquetas del formulario en lenguaje del analista.
+- Se unificó el color de acción en un solo azul (`#1D4ED8`) y se verificó el contraste de los botones (ver «Revisión de contraste»).
+
+Algunos de estos cambios responden directamente a hallazgos del análisis ético: la corrección de contraste surge de la revisión de accesibilidad (B3), y al eliminar la pantalla Perfil de usuario se retiraron del prototipo el teléfono y la dirección, datos personales que ninguna historia de usuario justificaba y que no corresponde recopilar según la ficha de tratamiento de datos (B2).
+
+### Antes
+
+![Detalle de la anomalía antes de la actualización](evidencias/etica_actualizacion_antes.jpeg)
+
+### Después
+
+![Detalle de la anomalía después de la actualización](evidencias/etica_actualizacion_despues.jpeg)
