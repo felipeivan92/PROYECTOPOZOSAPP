@@ -1,7 +1,10 @@
 # Prototipo navegable · Aqua Trace
 
-**Enlace al prototipo:**  
-https://www.figma.com/design/hiJAFk97pvH1wxw52zjUej/Wareframe-Aqua-Trace?node-id=0-1
+**Enlace al prototipo navegable:**  
+https://www.figma.com/proto/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=42-288&p=f&t=gDEEILfUkMw6wbEt-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=42%3A288&page-id=0%3A1
+
+**Archivo editable en Figma:**  
+https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=0-1&t=8Vxl3FmqEFioXLI8-0
 
 El prototipo representa el flujo principal de revisión y gestión de anomalías detectadas en el monitoreo de pozos.
 
@@ -13,9 +16,11 @@ Para mantener consistencia entre las pantallas del flujo principal se utiliza el
 
 - **Texto principal:** 24 px para títulos de pantalla.
 - **Texto de contenido:** 16 px para información, etiquetas y controles.
-- **Color de acción:** azul para botones y acciones principales.
-- **Color de alerta:** rojo para advertencias o condiciones que requieren atención.
+- **Color de acción:** azul `#1D4ED8` para botones y acciones principales (relleno en la acción primaria y contorno en las secundarias).
+- **Color de alerta:** rojo `#B91C1C` para advertencias y errores que requieren atención.
 - **Unidad base de espaciado:** 8 px.
+
+Colores de apoyo: texto principal `#1F2937`, texto secundario `#475569`, fondo de pantalla `#F8FAFC` y menú lateral `#0B2A4A`.
 
 Los estados del sistema se presentan mediante texto además del apoyo visual del color, evitando que la interpretación dependa únicamente de este último.
 
@@ -156,14 +161,17 @@ Este camino evita que una confirmación accidental genere una gestión no desead
 
 El prototipo considera que una interfaz de monitoreo debe comunicar claramente el estado de la información.
 
-Los estados definidos para la implementación son:
+Los estados representados en el prototipo son:
 
-| Estado | Mensaje esperado |
-|---|---|
-| Con datos | Se muestran los eventos disponibles según los filtros seleccionados. |
-| Vacío | No se encontraron anomalías para los filtros seleccionados. |
-| Cargando | Cargando eventos… |
-| Error | No fue posible cargar los eventos. Intenta nuevamente. |
+| Estado | Dónde se ve en el prototipo | Mensaje que muestra |
+|---|---|---|
+| Con datos | P1 · Eventos priorizados | «2 eventos disponibles», con el detalle de cada evento. |
+| Cargando | P1 · Consultando eventos | «Cargando eventos…» y «Consultando los datos del ejemplo. El listado aparecerá al terminar.» |
+| Vacío | P1 · Sin resultados | «No hay eventos para estos filtros» y «No se encontraron eventos. Restablece los filtros para volver a los ejemplos.» |
+| Error de formulario | P3 · Registrar gestión con el comentario vacío | Bajo el campo: «Escribe por qué decides generar o no el ticket.» |
+| Respaldo insuficiente | Camino alternativo de P2 | «Estado: Pendiente · Resultado de la comprobación: Respaldo insuficiente». |
+
+Un error de carga de los eventos («No fue posible cargar los eventos. Intenta nuevamente.») queda definido para la implementación, pero no se representa como pantalla en este prototipo.
 
 Los estados de eventos como **Pendiente**, **En revisión**, **Gestionado** y **Cerrado** deben mostrarse siempre mediante texto y no únicamente mediante color.
 
@@ -180,4 +188,4 @@ Los estados de eventos como **Pendiente**, **En revisión**, **Gestionado** y **
 
 Para la evaluación del Avance 5 se consideran como flujo principal las pantallas P1, P2, P3 y P4.
 
-El archivo Figma contiene además pantallas complementarias, como inicio de sesión, inicio, perfil de usuario, recuperación de contraseña, seguimiento y cierre de sesión. Estas pantallas representan contexto adicional de la solución, pero no forman parte del flujo principal evaluado en este avance.
+El archivo Figma contiene únicamente las pantallas del flujo principal (P1 a P4), la confirmación previa a generar el ticket, el camino alternativo «Respaldo insuficiente» y los estados de interfaz descritos arriba. Tras la retroalimentación del Avance 5 se eliminaron las pantallas que no provienen de una historia de usuario (inicio de sesión, recuperación de contraseña, inicio, perfil de usuario, seguimiento del ticket y cierre de sesión), por lo que el prototipo parte en P1 y el menú lateral solo incluye las cuatro pantallas del flujo.

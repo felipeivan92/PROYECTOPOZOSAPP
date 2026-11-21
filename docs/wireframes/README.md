@@ -4,7 +4,7 @@
 Wireframes de baja fidelidad del flujo principal del proyecto.
 
 **Archivo editable en Figma:**  
-https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7--copia-?node-id=0-1&t=R4K1gY5ow6aYXwvW-1
+https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=0-1&t=8Vxl3FmqEFioXLI8-0
 
 ## Pantallas
 
@@ -32,7 +32,7 @@ https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyect
 - **Historia:** HU-04
 - **Propósito:** mostrar cómo quedó gestionado el caso, para que el analista pueda retomar su seguimiento sin reconstruir lo ocurrido en revisiones anteriores.
 - **Datos mostrados:** `codigo_ticket`, `fecha_hora_creacion`, `estado`, `motivo`, `accion`, `resultado`, `comentario`.
-- **Criterio visible:** eel analista puede identificar qué ocurrió con el evento, cuál es su estado actual y qué ticket o respaldo quedó asociado.
+- **Criterio visible:** el analista puede identificar qué ocurrió con el evento, cuál es su estado actual y qué ticket o respaldo quedó asociado.
 - **Navegación:** “Ver eventos” lleva a P1; “Ver detalle” lleva a P2.
 
 ## Wireframes disponibles

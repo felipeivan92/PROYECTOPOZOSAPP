@@ -31,5 +31,5 @@ Como analista de monitoreo, considero que ayudaría mucho el ver la anomalía ge
 Ver `docs/wireframes/`.
 
 Archivo Figma:
-https://www.figma.com/design/3SF32ZeLEasQa4vD1vjJmT/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7?node-id=0-1&t=b24mgRzqm4I21QIc-1
+https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=0-1&t=8Vxl3FmqEFioXLI8-0
 
