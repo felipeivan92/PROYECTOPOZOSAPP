@@ -4,18 +4,6 @@ Equipo 7 · Aqua Trace
 
 ## Encargo de trabajo para la PoC
 
-### Mensajes originales usados para iniciar y ajustar el trabajo
-
-Omar Carvajal compartió la pauta del Avance 7 con este mensaje:
-
-> ayudameme con el avance 7, si tienes dudas de que proyecto corresponde, preguntame
-
-Luego compartió una captura con la retroalimentación de la profesora y escribió:
-
-> te dejo una retroalimentacion que dejo la profesora
-
-La pauta fijó los requisitos de la PoC. La retroalimentación orientó cambios en las etiquetas, el mensaje de error y el contraste.
-
 ### Especificación de implementación a partir de esos mensajes
 
 Las cuatro partes siguientes sintetizan el encargo aplicado en esta conversación. El equipo aún debe incorporar el texto original de la clase 6.1.
