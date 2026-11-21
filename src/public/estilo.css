@@ -1,0 +1,40 @@
+* { box-sizing: border-box; }
+:root {
+  font: 16px/1.55 system-ui, sans-serif;
+  color: #142d3a;
+  background: #f0f5f7;
+}
+body { margin: 0; }
+.wrap { width: min(100% - 2.5rem, 61rem); margin-inline: auto; }
+header { background: #103747; color: #fff; padding: 1rem 0; font-weight: 700; }
+header .wrap { display: flex; justify-content: space-between; gap: 1rem; }
+header span { color: #c6e1e9; font-size: .9rem; }
+main { padding-block: clamp(1.5rem, 5vw, 3.75rem); }
+h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.07; margin: 0 0 .65rem; }
+h2 { font-size: 1.2rem; margin: 0 0 1rem; }
+.intro { margin: 0 0 1.65rem; color: #365563; }
+.layout { display: grid; grid-template-columns: 4fr 5fr; align-items: start; gap: 1rem; }
+.panel { background: #fff; border: 1px solid #d2e0e5; border-radius: 12px; padding: 1.35rem; }
+fieldset { border: 0; margin: 0; padding: 0; min-inline-size: 0; }
+label, dt { display: block; font-weight: 650; }
+select, textarea, button { font: inherit; }
+select, textarea {
+  width: 100%; padding: .65rem .75rem; margin: .3rem 0 .85rem;
+  border: 1px solid #78939e; border-radius: 6px; background: #fff; color: inherit;
+}
+textarea { display: block; resize: vertical; }
+dd { margin: 0 0 .8rem; }
+dl { margin-bottom: 0; }
+.ayuda { color: #365563; font-size: .88rem; margin: -.35rem 0 .95rem; }
+button { border: 0; border-radius: 6px; background: #0b586c; color: #fff; padding: .65rem 1rem; font-weight: 700; cursor: pointer; }
+button:disabled { background: #e0e8eb; color: #435b64; cursor: default; }
+:focus-visible { outline: 3px solid #1a7992; outline-offset: 3px; }
+#mensaje { margin: 1rem 0 0; overflow-wrap: anywhere; }
+#mensaje:empty { margin: 0; }
+#mensaje[data-tipo="error"] { color: #a1202e; }
+#mensaje[data-tipo="exito"] { color: #15603e; font-weight: 650; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 42rem) { .layout { grid-template-columns: 1fr; } }
+
+#comentario[aria-invalid="true"] { border-color: #a1202e; }
+#comentario-error { color: #a1202e; margin: -.35rem 0 .9rem; font-size: .9rem; }
