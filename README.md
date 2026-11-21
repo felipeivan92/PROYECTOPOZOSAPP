@@ -96,7 +96,7 @@ Equipo N° 7:
 
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
-- [Archivo editable en Figma](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-Act.Obs5?node-id=0-1&t=gDEEILfUkMw6wbEt-1)
+- [Archivo editable en Figma]([https://www.figma.com/design/SENgfuHMurDWgFsQ2ay3ZM/Avance-4---Wireframe-Proyecto-Pozos---Equipo-7--copia-?node-id=0-1&t=R4K1gY5ow6aYXwvW-1](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-Act.Obs5?node-id=0-1&t=gDEEILfUkMw6wbEt-1))
 
 ## Avance 5 · Prototipo navegable y análisis ético
 
