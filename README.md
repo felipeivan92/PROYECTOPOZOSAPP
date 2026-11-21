@@ -117,8 +117,7 @@ Equipo N° 7:
 
 - [Historias de usuario](docs/historias.md)
 - [Wireframes del flujo principal](docs/wireframes/)
-- [Archivo editable en Figma]([https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=0-1&t=8Vxl3FmqEFioXLI8-0](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-15_11_F?node-id=42-288&t=DO14ON8HD4QOk3zK-1))
-
+- [Archivo editable en Figma]([[[https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=0-1&t=8Vxl3FmqEFioXLI8-0](https://www.figma.com/design/xj8Y7bch5eofbDyEB6uYeH/WF-15_11_F?node-id=42-288&t=DO14ON8HD4QOk3zK-1))
 ## Avance 5 · Prototipo navegable y análisis ético
 
 - [Prototipo navegable en Figma](https://www.figma.com/proto/xj8Y7bch5eofbDyEB6uYeH/WF-AquaTrace-AO15112026?node-id=42-288&p=f&t=gDEEILfUkMw6wbEt-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=42%3A288&page-id=0%3A1)
