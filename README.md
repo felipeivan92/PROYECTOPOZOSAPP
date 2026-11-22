@@ -77,7 +77,7 @@ La PoC permite registrar una gestión sobre un evento de ejemplo, con acción, r
 ### Publicación de la PoC
 
 - **Dirección pública en Vercel:** https://proyecto-pozos-app.vercel.app
-- **Video de 1 a 2 minutos:** pendiente de incorporar después de probar la dirección de producción. El enlace debe permitir el acceso a la profesora.
+- **Video de 1 a 2 minutos:** pendiente de incorporar. El enlace debe permitir el acceso a la profesora.
 
 Pasos para publicar:
 
