@@ -6,7 +6,7 @@
 
 ## Alcance y criterio de registro
 
-PozosApp es una propuesta de apoyo al monitoreo y trazabilidad de pozos de Codelco Chuquicamata. El [README principal](../../README.md) declara que aún no existe un MVP funcional ni una base de datos implementada. Los ejemplos del [modelo preliminar](../datos/estructura_datos.md) son ilustrativos, no datos operacionales.
+PozosApp es una propuesta de apoyo al monitoreo y trazabilidad de pozos de Codelco Chuquicamata. Actualmente el proyecto cuenta con una prueba de concepto funcional del flujo de registro de gestión, desplegada en Vercel y conectada a una base de demostración en Turso. Esta PoC utiliza únicamente datos ficticios y representa un camino delgado del sistema; no corresponde todavía al MVP completo ni utiliza datos operacionales reales.
 
 La IA participó en las propuestas y en la redacción de esta bitácora. Una respuesta generada no constituye por sí sola una verificación. Se distinguen antecedentes declarados en la bitácora anterior, cambios comprobados en GitHub y asuntos pendientes de validación humana.
 
