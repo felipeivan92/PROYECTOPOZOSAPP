@@ -2,7 +2,7 @@
 :root {
   font: 16px/1.55 system-ui, sans-serif;
   color: #142d3a;
-  background: #1D4ED8;
+  background: #f0f5f7;
 }
 body { margin: 0; }
 .wrap { width: min(100% - 2.5rem, 61rem); margin-inline: auto; }
@@ -26,7 +26,7 @@ textarea { display: block; resize: vertical; }
 dd { margin: 0 0 .8rem; }
 dl { margin-bottom: 0; }
 .ayuda { color: #365563; font-size: .88rem; margin: -.35rem 0 .95rem; }
-button { border: 0; border-radius: 6px; background: #0b586c; color: #fff; padding: .65rem 1rem; font-weight: 700; cursor: pointer; }
+button { border: 0; border-radius: 6px; background: #1D4ED8; color: #fff; padding: .65rem 1rem; font-weight: 700; cursor: pointer; }
 button:disabled { background: #e0e8eb; color: #435b64; cursor: default; }
 :focus-visible { outline: 3px solid #1a7992; outline-offset: 3px; }
 #mensaje { margin: 1rem 0 0; overflow-wrap: anywhere; }
