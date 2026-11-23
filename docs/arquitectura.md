@@ -77,8 +77,4 @@ La PoC fue probada en producción con el evento 7001, obteniendo un folio asocia
 
 Video: 
 
-## Retroalimentación del Avance 5
 
-La profesora confirmó las rutas de evidencia insuficiente y de cancelación, y valoró el detalle con las lecturas de DGA y LI-COR. Para la PoC se conservó el bloqueo del evento 7002 y se usaron las etiquetas «Acción realizada» y «Resultado de la revisión». El color del único botón principal es `#0B586C`. El contraste calculado con texto blanco es **7,99:1** y supera el mínimo **4,5:1** para texto normal. El cálculo corresponde a esos dos colores. [Criterio WCAG 1.4.3](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum).
-
-Para cerrar las observaciones del prototipo en Figma, queda iniciar en Eventos priorizados, retirar las pantallas ajenas a las historias evaluadas y representar los estados de carga, vacío y error. En el análisis ético, el equipo debe asignar cada riesgo a un integrante y decidir si incorpora una observación de terreno como evidencia contextual, con capturas de la pantalla anterior y posterior al cambio.
