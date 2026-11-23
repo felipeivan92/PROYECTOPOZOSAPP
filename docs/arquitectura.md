@@ -70,7 +70,12 @@ console.log(respuesta.status, await respuesta.json());
 
 Para comprobar el caso exitoso en la base, copia el folio de pantalla y consulta `SELECT * FROM gestion WHERE folio = 'FOLIO_COPIADO';` en la consola SQL de la base de prueba.
 
-**Dirección pública y video.** Pendientes de verificación e incorporación en el [README](../README.md).
+**Dirección pública y video.** 
+Dirección pública: https://proyecto-pozos-app.vercel.app
+
+La PoC fue probada en producción con el evento 7001, obteniendo un folio asociado al registro guardado en Turso. También se verificó el rechazo por comentario vacío y el bloqueo del evento 7002 por respaldo insuficiente.
+
+Video: 
 
 ## Retroalimentación del Avance 5
 
