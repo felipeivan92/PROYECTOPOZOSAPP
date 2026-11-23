@@ -299,8 +299,6 @@ Se entregó un encargo estructurado (Contexto, Intención, Restricciones y Verif
 * **Restricciones:** utilizar únicamente datos ficticios; mantener credenciales fuera del repositorio mediante variables de entorno; no depender solo de validaciones en frontend; bloquear eventos sin respaldo suficiente; exigir comentario obligatorio de máximo 300 caracteres; mantener fuera del alcance carga de archivos, autenticación real, detección automática o emisión real de tickets; publicar desde `main` con acceso público sin inicio de sesión; y asegurar reproducibilidad desde el `README.md`.
 * **Verificación solicitada:** probar caso exitoso (`7001`), comentario vacío, bloqueo de evento sin respaldo (`7002`), persistencia real en base de datos, devolución de folio, URL pública operativa, ausencia de secretos en el repo, ejecución local (`npm run dev`), pruebas automatizadas (`npm test`) y consistencia visual con `docs/prototipo.md`.
 
-*(Nota: El detalle técnico intermedio de los archivos generados durante la iteración de este avance también se documentó en [avance-7.md](avance-7.md)).*
-
 ### Respuesta obtenida
 
 La IA generó la estructura completa del camino delgado en el repositorio:
