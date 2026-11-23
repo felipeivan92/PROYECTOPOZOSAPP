@@ -75,6 +75,6 @@ Dirección pública: https://proyecto-pozos-app.vercel.app
 
 La PoC fue probada en producción con el evento 7001, obteniendo un folio asociado al registro guardado en Turso. También se verificó el rechazo por comentario vacío y el bloqueo del evento 7002 por respaldo insuficiente.
 
-Video: 
+Video: https://drive.google.com/file/d/18-KrztY35g75AMe-iVTkiagLQ9COtO_B/view
 
 
