@@ -2,7 +2,7 @@
 :root {
   font: 16px/1.55 system-ui, sans-serif;
   color: #142d3a;
-  background: #f0f5f7;
+  background: #1D4ED8;
 }
 body { margin: 0; }
 .wrap { width: min(100% - 2.5rem, 61rem); margin-inline: auto; }
