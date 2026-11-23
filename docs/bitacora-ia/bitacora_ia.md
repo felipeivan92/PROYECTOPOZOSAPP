@@ -6,7 +6,7 @@
 
 ## Alcance y criterio de registro
 
-PozosApp es una propuesta de apoyo al monitoreo y trazabilidad de pozos de Codelco Chuquicamata. El [README principal](../../README.md) declara que aún no existe un MVP funcional ni una base de datos implementada. Los ejemplos del [modelo preliminar](../datos/estructura_datos.md) son ilustrativos, no datos operacionales.
+PozosApp es una propuesta de apoyo al monitoreo y trazabilidad de pozos de Codelco Chuquicamata. Actualmente el proyecto cuenta con una prueba de concepto funcional del flujo de registro de gestión, desplegada en Vercel y conectada a una base de demostración en Turso. Esta PoC utiliza únicamente datos ficticios y representa un camino delgado del sistema; no corresponde todavía al MVP completo ni utiliza datos operacionales reales.
 
 La IA participó en las propuestas y en la redacción de esta bitácora. Una respuesta generada no constituye por sí sola una verificación. Se distinguen antecedentes declarados en la bitácora anterior, cambios comprobados en GitHub y asuntos pendientes de validación humana.
 
@@ -283,3 +283,57 @@ Se compararon los cambios con el correo de la profesora, punto por punto, y se r
 Los textos de las secciones de contraste, sistema mínimo y actualización de `etica.md` y `prototipo.md` se redactaron con apoyo de la IA, a partir de las mediciones y de lo que el equipo describió, y el equipo los revisó antes de subirlos.
 
 Para el contraste se pidió a la IA medir los colores de los botones en la exportación del prototipo. Midió 2,54:1 para el texto blanco sobre el turquesa anterior, cifra que coincide con el 2,5:1 que había medido la profesora. Después del cambio, el azul de acción dio 6,70:1, sobre el mínimo de 4,5:1.
+
+## Uso 9 - Desarrollo, revisión y despliegue de la PoC (Avance 7)
+
+### Objetivo
+
+Apoyar la construcción, revisión y publicación de la prueba de concepto (PoC) correspondiente al Avance 7, procurando que una gestión recorriera de manera completa y verificable la interfaz, el backend y la base de datos (`pantalla → backend → validación → base de datos → respuesta visible`), asegurando que los casos inválidos fueran rechazados antes de persistir.
+
+### Prompt / Encargo entregado al agente de IA
+
+Se entregó un encargo estructurado (Contexto, Intención, Restricciones y Verificación solicitada) para trabajar sobre el repositorio `PROYECTOPOZOSAPP` tomando como camino delgado el registro de una gestión sobre una anomalía con respaldo suficiente:
+
+* **Contexto:** Aqua Trace apoya el monitoreo y trazabilidad de anomalías en pozos. Para el Avance 7 se requería demostrar una única acción completa de punta a punta, con persistencia real y respuesta visible (folio asociado al evento), incorporando además las observaciones previas de la profesora respecto a mensajes de error en formularios, lenguaje de etiquetas y contraste visual.
+* **Intención:** construir y comprobar un camino delgado que permitiera seleccionar un evento ficticio, registrar acción, resultado de revisión y comentario, validar en backend, persistir en base de datos, devolver un folio visible y comprobar al menos un caso exitoso y casos de error.
+* **Restricciones:** utilizar únicamente datos ficticios; mantener credenciales fuera del repositorio mediante variables de entorno; no depender solo de validaciones en frontend; bloquear eventos sin respaldo suficiente; exigir comentario obligatorio de máximo 300 caracteres; mantener fuera del alcance carga de archivos, autenticación real, detección automática o emisión real de tickets; publicar desde `main` con acceso público sin inicio de sesión; y asegurar reproducibilidad desde el `README.md`.
+* **Verificación solicitada:** probar caso exitoso (`7001`), comentario vacío, bloqueo de evento sin respaldo (`7002`), persistencia real en base de datos, devolución de folio, URL pública operativa, ausencia de secretos en el repo, ejecución local (`npm run dev`), pruebas automatizadas (`npm test`) y consistencia visual con `docs/prototipo.md`.
+
+*(Nota: El detalle técnico intermedio de los archivos generados durante la iteración de este avance también se documentó en [avance-7.md](avance-7.md)).*
+
+### Respuesta obtenida
+
+La IA generó la estructura completa del camino delgado en el repositorio:
+
+- **Frontend:** `src/public/index.html`, `src/public/app.js`, `src/public/estilo.css` y `src/public/decisiones.js` (lista compartida de combinaciones válidas entre acción y resultado).
+- **Backend y validación:** `src/gestion.mjs` (reglas de negocio, validación de longitud y respaldo) y `api/gestion.mjs` (función serverless para Vercel).
+- **Persistencia y datos ficticios:** `src/datos.sql` (esquema `evento` y `gestion` con los casos `7001` con respaldo suficiente y `7002` sin respaldo suficiente) y `src/local.mjs` (servidor local con SQLite para pruebas sin dependencias externas).
+- **Configuración y pruebas:** `vercel.json`, `.env.example`, `.gitignore`, `package.json` y `src/gestion.test.mjs` (pruebas automatizadas).
+
+Para el evento `7001`, el flujo permite registrar una gestión válida, persistirla y devolver un folio visible. Para el evento `7002`, el sistema mantiene el estado `Pendiente` y bloquea el registro por falta de respaldo suficiente.
+
+### Qué aceptamos y qué corregimos (Decisiones y criterio crítico del equipo)
+
+Ante las observaciones previas de la profesora sobre la necesidad de evidenciar criterio propio y no aceptar automáticamente las salidas de la IA, el equipo tomó y documentó las siguientes decisiones técnicas y de diseño durante esta etapa:
+
+1. **Delimitación estricta del alcance (camino delgado):** aceptamos mantener una única acción funcional de punta a punta en lugar de abarcar múltiples pantallas o funciones incompletas. Se rechazó incorporar carga de archivos, detección automática, autenticación real o generación efectiva de tickets, manteniéndolos fuera de la PoC para no comprometer la trazabilidad ni la calidad del flujo principal.
+2. **Validación obligatoria en el servidor (no confiar solo en el navegador):** aunque el frontend deshabilita controles o valida campos, el equipo exigió y verificó que `src/gestion.mjs` y `api/gestion.mjs` validen de forma independiente el método HTTP, formato JSON, existencia del evento, folio, compatibilidad entre acción y resultado, obligatoriedad y tope de 300 caracteres del comentario, y suficiencia de respaldo antes de ejecutar cualquier `INSERT`, evitando bypass mediante peticiones directas al endpoint.
+3. **Resguardo de credenciales y separación de entornos:** se rechazó incluir cadenas de conexión o tokens en el código fuente o en commits. Las credenciales de producción (`TURSO_DATABASE_URL` y `TURSO_AUTH_TOKEN`) se configuraron exclusivamente en Vercel; `.env.example` conserva solo los nombres de las variables y `.gitignore` excluye archivos `.env` y bases locales `.sqlite`.
+4. **Corrección en el orden de inicialización de la base de datos en Turso:** durante la puesta en marcha en Turso, el equipo detectó que la ejecución conjunta inicial de sentencias SQL no creaba las tablas esperadas antes de insertar datos. Se corrigió el procedimiento ejecutando primero la creación de tablas (`evento` y `gestion`) y posteriormente la inserción de los registros ficticios de prueba (`7001` y `7002`).
+5. **Ajuste de etiquetas de interfaz y vinculación de errores de formulario:** siguiendo la retroalimentación docente previa sobre el prototipo, se reemplazaron etiquetas genéricas por términos propios del flujo del analista y se vinculó el mensaje de error del comentario (`Escribe por qué tomaste esta decisión.`) directamente al campo correspondiente en lugar de mostrar un aviso genérico.
+6. **Depuración de la secuencia de pruebas funcionales:** durante las pruebas manuales, el equipo distinguió un error provocado por una combinación inválida de acción/resultado de la prueba específica de comentario vacío, ajustando el orden de selección en la prueba para verificar de manera aislada el mensaje exacto de comentario obligatorio.
+7. **Corrección de inconsistencia visual y contraste accesible:** durante la revisión contra `docs/prototipo.md`, el equipo detectó que la implementación inicial de la PoC utilizaba `#0B586C` en el botón principal, contradiciendo el color `#1D4ED8` definido en el sistema de diseño del prototipo. Se corrigió `src/public/estilo.css` para unificar el color de acción en `#1D4ED8` sobre fondo `#f0f5f7`, verificando un contraste de **6,70:1** con texto blanco (superior al umbral WCAG AA de **4,5:1**).
+
+### Cómo lo verificamos
+
+1. **Entorno local y pruebas automatizadas:** se ejecutaron `npm test` (validando guardado exitoso, idempotencia por folio, rechazos por comentario vacío o >300 caracteres, bloqueo por respaldo insuficiente y manejo de fallos de conexión) y `npm run dev` sobre SQLite local sin credenciales externas.
+2. **Despliegue y persistencia en producción (Turso + Vercel):** se verificó el despliegue público desde `main` en `https://proyecto-pozos-app.vercel.app` sin requerir inicio de sesión, ejecutando tres escenarios comprobables:
+   - **Caso exitoso (Evento `7001`):** selección de acción y resultado compatibles con comentario válido; generación de folio visible en pantalla y comprobación directa en Turso mediante `SELECT * FROM gestion;` confirmando la persistencia real del registro.
+   - **Validación de comentario vacío (Evento `7001`):** envío con combinación válida de acción/resultado y comentario vacío; rechazo en backend y despliegue del mensaje `Escribe por qué tomaste esta decisión.`.
+   - **Bloqueo por respaldo insuficiente (Evento `7002`):** selección del evento `7002`; despliegue de estado `Pendiente`, mensaje `Se requieren antecedentes adicionales para continuar.` y bloqueo de guardado.
+3. **Auditoría visual y de repositorio:** se verificó en el CSS desplegado la aplicación de `#1D4ED8` en el botón de acción principal y `#f0f5f7` en el fondo, así como la ausencia de credenciales reales en el historial de Git.
+4. **Evidencia audiovisual:** se grabó un video de demostración con pantalla y voz sincronizada recorriendo el acceso público a la PoC, el registro exitoso del evento `7001` con su folio, el rechazo por comentario vacío y el bloqueo del evento `7002`.
+
+### Resultado
+
+La PoC quedó operativa y verificada en `https://proyecto-pozos-app.vercel.app`, demostrando de extremo a extremo el flujo `pantalla → backend → validación → base de datos → respuesta visible`. El caso válido (`7001`) persiste en Turso asociado a un folio único, los casos inválidos o sin respaldo (`7002`) son rechazados antes de escribir en la base, los datos son íntegramente ficticios y las decisiones humanas de diseño, seguridad y alcance quedaron trazadas en el repositorio.
