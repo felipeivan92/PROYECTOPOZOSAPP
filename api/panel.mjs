@@ -1,8 +1,6 @@
 
 import { readFile } from 'node:fs/promises';
-import { verificarSesion } from '../src/auth.mjs';
-import { obtenerToken } from '../src/sesion.mjs';
-import { solicitarSupabase } from '../src/supabase.mjs';
+import { identificar } from '../src/autorizacion.mjs';
 
 function responder(texto, status, headers = {}) {
   return new Response(texto, {
@@ -24,7 +22,8 @@ function redirigirLogin() {
 
 async function accederPanel(request) {
 
-  // Permitir únicamente la consulta de la pantalla.
+  // 1. Verificar el método HTTP.
+
   if (request.method !== 'GET') {
     return responder(
       'Método no permitido.',
@@ -33,71 +32,31 @@ async function accederPanel(request) {
     );
   }
 
-  // 1. Obtener y verificar la sesión.
-  const token = obtenerToken(request);
+  // 2. Utilizar el módulo compartido de autorización.
 
-  if (!token) {
-    return redirigirLogin();
-  }
-
-  const sesion = await verificarSesion(token);
+  const sesion = await identificar(request);
 
   if (!sesion.ok) {
+
     if (sesion.status === 401) {
       return redirigirLogin();
     }
 
     return responder(
-      'No fue posible verificar tu sesión. Intenta nuevamente.',
-      503
+      sesion.mensaje,
+      sesion.status
     );
   }
 
+  // 3. Entregar la pantalla privada.
+
   try {
 
-    // 2. Consultar el perfil del usuario autenticado.
-    const respuesta = await solicitarSupabase(
-      '/rest/v1/perfil',
-      {
-        token,
-        parametros: {
-          select: 'id_usuario,rol,activo',
-          id_usuario: `eq.${sesion.usuario.id}`
-        }
-      }
-    );
-
-    if (!respuesta.ok) {
-      return responder(
-        'No fue posible verificar los permisos de acceso.',
-        503
-      );
-    }
-
-    const perfiles = respuesta.datos;
-
-    if (!Array.isArray(perfiles) ||
-        perfiles.length !== 1) {
-      return responder('Acceso no autorizado.', 403);
-    }
-
-    const perfil = perfiles[0];
-
-    // 3. Comprobar que el perfil esté habilitado.
-    if (
-      perfil.id_usuario !== sesion.usuario.id ||
-      perfil.activo !== true ||
-      !['Analista', 'Supervisor'].includes(perfil.rol)
-    ) {
-      return responder(
-        'No tienes permisos para acceder al panel.',
-        403
-      );
-    }
-
-    // 4. Cargar la pantalla desde el directorio privado.
     const contenido = await readFile(
-      new URL('../src/private/panel.html', import.meta.url),
+      new URL(
+        '../src/private/panel.html',
+        import.meta.url
+      ),
       'utf8'
     );
 
@@ -106,6 +65,7 @@ async function accederPanel(request) {
     });
 
   } catch {
+
     return responder(
       'El panel no está disponible temporalmente. Intenta nuevamente.',
       503
