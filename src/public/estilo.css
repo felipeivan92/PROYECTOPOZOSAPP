@@ -38,3 +38,33 @@ button:disabled { background: #e0e8eb; color: #435b64; cursor: default; }
 
 #comentario[aria-invalid="true"] { border-color: #a1202e; }
 #comentario-error { color: #a1202e; margin: -.35rem 0 .9rem; font-size: .9rem; }
+
+#comentario-contador[data-exceso="si"], #motivo-contador[data-exceso="si"] { color: #a1202e; font-weight: 650; }
+#motivo[aria-invalid="true"] { border-color: #a1202e; }
+#motivo-error { color: #a1202e; margin: -.35rem 0 .9rem; font-size: .9rem; }
+
+.lista { margin-top: 1rem; }
+.barra { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; }
+.barra h2 { margin: 0; }
+.filtros { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.filtros select { width: auto; margin: 0; }
+.filtros label { display: inline; }
+#resumen { margin: .75rem 0 0; }
+#lista-estado, #lista-aviso { margin: .75rem 0 0; overflow-wrap: anywhere; }
+#lista-estado:empty, #lista-aviso:empty { margin: 0; }
+#lista-estado[data-tipo="error"], #lista-aviso[data-tipo="error"] { color: #a1202e; }
+#lista-estado[data-tipo="vacio"], #lista-estado[data-tipo="carga"] { color: #365563; }
+#lista-aviso[data-tipo="exito"] { color: #15603e; font-weight: 650; }
+.tabla-scroll { overflow-x: auto; margin-top: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: left; vertical-align: top; padding: .55rem .6rem; border-bottom: 1px solid #d2e0e5; }
+th { font-weight: 700; background: #f0f5f7; }
+td button { padding: .35rem .65rem; margin: 0 .35rem .25rem 0; font-size: .88rem; }
+.estado { display: inline-block; padding: .1rem .55rem; border-radius: 999px; font-weight: 650; font-size: .85rem; background: #e0e8eb; color: #142d3a; }
+.estado[data-estado="Registrada"] { background: #dbeafe; color: #1e3a8a; }
+.estado[data-estado="Cerrada"] { background: #dcfce7; color: #14532d; }
+.estado[data-estado="Anulada"] { background: #fee2e2; color: #7f1d1d; }
+#anulacion { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #d2e0e5; }
+#anulacion h3 { margin: 0 0 .4rem; font-size: 1.05rem; }
+button.secundario { background: #fff; color: #1D4ED8; border: 1px solid #1D4ED8; margin-left: .5rem; }
+button.secundario:disabled { background: #e0e8eb; color: #435b64; border-color: #e0e8eb; }
