@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión | Aqua Trace</title>
+
+  <link rel="stylesheet" href="/estilo.css">
+  <script type="module" src="/login.js"></script>
+
+  <style>
+    .login-panel {
+      max-width: 420px;
+      margin: 2rem auto;
+    }
+
+    .login-panel input {
+      font: inherit;
+      width: 100%;
+      padding: .65rem .75rem;
+      margin: .3rem 0 1rem;
+      border: 1px solid #78939e;
+      border-radius: 6px;
+      background: #fff;
+      color: inherit;
+    }
+
+    .login-panel button {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap">
+      Aqua Trace <span>Equipo 7</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="panel login-panel">
+
+      <h1>Iniciar sesión</h1>
+
+      <p class="intro">
+        Ingresa tus credenciales para acceder al
+        sistema de gestión de eventos de monitoreo.
+      </p>
+
+      <form id="login" method="post" action="/api/auth">
+
+        <label for="email">Correo electrónico</label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          autocomplete="username"
+          maxlength="254"
+          required
+        >
+
+        <label for="password">Contraseña</label>
+
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="current-password"
+          maxlength="1024"
+          required
+        >
+
+        <button type="submit" id="ingresar" disabled>
+          Iniciar sesión
+        </button>
+
+      </form>
+
+      <p id="mensaje"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true">
+      </p>
+
+      <noscript>
+        Debes habilitar JavaScript para iniciar sesión.
+      </noscript>
+
+      <hr>
+
+      <p class="ayuda">
+        Acceso exclusivo para usuarios autorizados.
+        Utiliza únicamente las cuentas de prueba
+        habilitadas para Aqua Trace.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

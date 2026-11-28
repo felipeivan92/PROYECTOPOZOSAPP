@@ -1,0 +1,149 @@
+
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel interno | Aqua Trace</title>
+  <link rel="stylesheet" href="/estilo.css">
+  <script type="module" src="/app.js"></script>
+</head>
+
+<script type="module">
+  import { configurarCierreSesion } from '/logout.js';
+
+  const boton = document.querySelector('#cerrar-sesion');
+  const mensaje = document.querySelector('#mensaje-sesion');
+
+  configurarCierreSesion(boton, mensaje);
+
+  boton.disabled = false;
+</script>
+
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      Aqua Trace <span>Equipo 7</span>
+    </div>
+
+    <button
+      id="cerrar-sesion"
+      type="button"
+      disabled
+    >
+      Cerrar sesión
+    </button>
+  </div>
+</header>
+
+  <main class="wrap">
+    <p
+  id="mensaje-sesion"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+></p>
+
+    <h1>Registrar gestión</h1>
+
+    <p class="intro">
+      Revisa el respaldo de una anomalía y registra tu decisión.
+      Usa solo datos ficticios.
+    </p>
+
+    <div class="layout">
+
+      <section aria-labelledby="evento-titulo" class="panel">
+
+        <h2 id="evento-titulo">Evento de monitoreo</h2>
+
+        <label for="evento">Evento de prueba</label>
+
+        <select id="evento">
+          <option value="7001">
+            7001 · Sobreflujo de caudal
+          </option>
+          <option value="7002">
+            7002 · Dato faltante
+          </option>
+        </select>
+
+        <dl aria-live="polite">
+          <dt>Pozo</dt>
+          <dd id="pozo"></dd>
+
+          <dt>Estado de revisión</dt>
+          <dd id="estado"></dd>
+
+          <dt>Evidencia de ejemplo</dt>
+          <dd id="evidencia"></dd>
+        </dl>
+
+      </section>
+
+      <section aria-labelledby="decision-titulo" class="panel">
+
+        <h2 id="decision-titulo">Decisión del analista</h2>
+
+        <form id="gestion" novalidate>
+
+          <fieldset id="campos" disabled>
+
+            <legend class="sr">Datos de la gestión</legend>
+
+            <label for="accion">Acción realizada</label>
+
+            <select id="accion" name="accion" required>
+              <option value="">Selecciona una acción</option>
+              <option>Validar evento</option>
+              <option>Descartar evento</option>
+              <option>Registrar observación</option>
+            </select>
+
+            <label for="resultado">Resultado de la revisión</label>
+
+            <select id="resultado" name="resultado" required>
+              <option value="">Selecciona un resultado</option>
+            </select>
+
+            <label for="comentario">Comentario</label>
+
+            <textarea
+              id="comentario"
+              name="comentario"
+              maxlength="300"
+              rows="3"
+              aria-describedby="comentario-ayuda comentario-error"
+              required
+            ></textarea>
+
+            <p class="ayuda" id="comentario-ayuda">
+              Hasta 300 caracteres.
+              Evita nombres y datos operacionales.
+            </p>
+
+            <p id="comentario-error" role="alert" hidden></p>
+
+            <button type="submit">Guardar gestión</button>
+
+          </fieldset>
+
+        </form>
+
+        <p
+          id="mensaje"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

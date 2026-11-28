@@ -1,6 +1,32 @@
+
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "outputDirectory": "src/public",
-  "functions": { "api/gestion.mjs": { "maxDuration": 20 } }
+  "functions": {
+    "api/gestion.mjs": {
+      "maxDuration": 20
+    },
+    "api/auth.mjs": {
+      "maxDuration": 20
+    },
+    "api/panel.mjs": {
+      "maxDuration": 20,
+      "includeFiles": "src/private/panel.html"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/panel"
+    },
+    {
+      "source": "/panel",
+      "destination": "/api/panel"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/api/panel"
+    }
+  ]
 }
