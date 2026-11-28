@@ -222,7 +222,7 @@ test('consultar: lista vacía, propias del Analista, todas del Supervisor y filt
   const { api } = crearEntorno();
   const vacia = await pedir(api, 'GET', 'token-ana');
   assert.equal(vacia.status, 200);
-  assert.deepEqual(await vacia.json(), { gestiones: [] });
+  assert.deepEqual(await vacia.json(), { gestiones: [], rol: 'Analista' });
 
   const deAna = solicitud();
   const deBeto = solicitud();
@@ -237,6 +237,7 @@ test('consultar: lista vacía, propias del Analista, todas del Supervisor y filt
   await pedir(api, 'PATCH', 'token-sup', { folio: deAna.folio, estado: 'Cerrada' });
   const cerradas = (await (await pedir(api, 'GET', 'token-sup', undefined, '?estado=Cerrada')).json()).gestiones;
   assert.deepEqual(cerradas.map(g => g.folio), [deAna.folio]);
+  assert.equal((await (await pedir(api, 'GET', 'token-sup')).json()).rol, 'Supervisor');
   assert.equal((await pedir(api, 'GET', 'token-sup', undefined, '?estado=Borrada')).status, 422);
 });
 
