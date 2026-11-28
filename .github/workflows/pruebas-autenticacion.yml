@@ -29,3 +29,6 @@ jobs:
 
       - name: Ejecutar pruebas de autenticacion
         run: node --test src/auth.test.mjs
+
+      - name: Ejecutar pruebas de proteccion del panel
+        run: node --test src/panel.test.mjs
