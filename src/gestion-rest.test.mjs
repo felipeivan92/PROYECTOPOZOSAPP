@@ -20,7 +20,7 @@ function crearEntorno() {
     { id_evento: 7001, respaldo_suficiente: true },
     { id_evento: 7002, respaldo_suficiente: false }
   ];
-  const entorno = { gestiones: [], llamadas: [], sinConexion: false, antesDeActualizar: null };
+  const entorno = { gestiones: [], llamadas: [], sinConexion: false, antesDeActualizar: null, fugaRls: false };
 
   const coincide = (fila, parametros) => Object.entries(parametros).every(([clave, valor]) =>
     ['select', 'order', 'limit'].includes(clave) || (valor.startsWith('eq.') && String(fila[clave]) === valor.slice(3)));
@@ -35,10 +35,26 @@ function crearEntorno() {
     if (ruta === '/rest/v1/evento') {
       return { ok: true, status: 200, datos: eventos.filter(fila => coincide(fila, parametros)) };
     }
-    const visibles = () => entorno.gestiones.filter(fila => usuario.rol === 'Supervisor' || fila.id_usuario === usuario.id);
+    if (ruta === '/rest/v1/rpc/resumen_gestiones') {
+      const grupos = new Map();
+      for (const fila of entorno.gestiones) {
+        const clave = [fila.id_evento, fila.accion, fila.resultado, fila.estado].join('|');
+        const grupo = grupos.get(clave) ?? {
+          id_evento: fila.id_evento, accion: fila.accion, resultado: fila.resultado, estado: fila.estado, cantidad: 0
+        };
+        grupo.cantidad += 1;
+        grupos.set(clave, grupo);
+      }
+      return { ok: true, status: 200, datos: [...grupos.values()] };
+    }
+    const visibles = () => entorno.gestiones.filter(fila =>
+      entorno.fugaRls || usuario.rol === 'Supervisor' || fila.id_usuario === usuario.id);
 
     if (metodo === 'GET') {
-      let filas = visibles().filter(fila => coincide(fila, parametros));
+      const filtros = entorno.fugaRls
+        ? Object.fromEntries(Object.entries(parametros).filter(([clave]) => clave !== 'id_usuario'))
+        : parametros;
+      let filas = visibles().filter(fila => coincide(fila, filtros));
       if (parametros.order === 'fecha_hora.desc') filas = [...filas].reverse();
       return { ok: true, status: 200, datos: filas.slice(0, Number(parametros.limit ?? 1000)) };
     }
@@ -48,7 +64,8 @@ function crearEntorno() {
         return { ok: false, status: 403, datos: null };
       }
       if (entorno.gestiones.some(fila => fila.folio === cuerpo.folio)) return { ok: true, status: 201, datos: [] };
-      if (cuerpo.comentario.length < 1 || cuerpo.comentario.length > 300) return { ok: false, status: 400, datos: null };
+      const largo = Array.from(cuerpo.comentario).length; // char_length de PostgreSQL cuenta caracteres
+      if (largo < 1 || largo > 300) return { ok: false, status: 400, datos: null };
       const fila = {
         ...cuerpo, id_usuario: usuario.id, estado: 'Registrada', fecha_hora: new Date().toISOString(),
         fecha_actualizacion: null, actualizado_por: null, motivo_anulacion: null
@@ -109,6 +126,9 @@ test('crear: guarda solo los cinco campos y la base asigna identidad, estado y f
   assert.notEqual(gestion.fecha_hora, '2000-01-01');
   assert.equal(gestiones.length, 1);
   assert.deepEqual(escribe().map(llamada => llamada.cuerpo), [datos]);
+  const insercion = escribe()[0];
+  assert.equal(insercion.parametros.on_conflict, 'folio');
+  assert.equal(insercion.prefer, 'return=representation,resolution=ignore-duplicates,missing=default');
 });
 
 test('crear: el reintento con el mismo folio no duplica y un folio ajeno responde 409', async () => {
@@ -311,4 +331,68 @@ test('formato, origen, sesión y fallas del servicio', async () => {
   const lista = await pedir(entorno.api, 'GET', 'token-ana');
   assert.equal(lista.status, 503);
   assert.equal((await lista.json()).mensaje, 'No pudimos cargar las gestiones. Intenta nuevamente.');
+});
+
+test('crear: tras un conflicto de folio la consulta se filtra por el usuario autenticado', async () => {
+  const { api, llamadas } = crearEntorno();
+  const datos = solicitud();
+  await pedir(api, 'POST', 'token-ana', datos);
+  await pedir(api, 'POST', 'token-ana', datos);
+  const consultas = llamadas.filter(llamada => llamada.metodo === 'GET' && llamada.parametros.folio);
+  assert.equal(consultas.length, 1);
+  assert.equal(consultas[0].parametros.id_usuario, 'eq.u-ana');
+});
+
+test('crear: aunque RLS filtrara mal, un folio de otro usuario no se devuelve como reintento exitoso', async () => {
+  const entorno = crearEntorno();
+  const datos = solicitud();
+  await pedir(entorno.api, 'POST', 'token-beto', datos);
+  entorno.fugaRls = true;
+  const resp = await pedir(entorno.api, 'POST', 'token-ana', datos);
+  assert.equal(resp.status, 409);
+  assert.deepEqual(await resp.json(), { mensaje: 'Ese folio corresponde a otra solicitud.' });
+  assert.equal(entorno.gestiones.length, 1);
+});
+
+test('crear: el límite de 300 se cuenta en caracteres Unicode y id_evento respeta el rango INTEGER', async () => {
+  const { api, gestiones } = crearEntorno();
+  const emojis300 = '😀'.repeat(300);
+  assert.equal((await pedir(api, 'POST', 'token-ana', solicitud({ comentario: emojis300 }))).status, 201);
+  const largo = await pedir(api, 'POST', 'token-ana', solicitud({ comentario: '😀'.repeat(301) }));
+  assert.equal(largo.status, 422);
+  assert.equal((await largo.json()).mensaje, 'Usa un comentario válido de hasta 300 caracteres.');
+  assert.equal(gestiones.length, 1);
+
+  assert.equal((await pedir(api, 'POST', 'token-ana', solicitud({ id_evento: 2147483647 }))).status, 404);
+  const fuera = await pedir(api, 'POST', 'token-ana', solicitud({ id_evento: 2147483648 }));
+  assert.equal(fuera.status, 422);
+  assert.equal((await fuera.json()).mensaje, 'El evento o el folio de la solicitud no es válido.');
+});
+
+test('resumen operativo: devuelve solo cantidades y respeta los roles', async () => {
+  const { api, llamadas } = crearEntorno();
+  await pedir(api, 'POST', 'token-ana', solicitud());
+  await pedir(api, 'POST', 'token-beto', solicitud());
+  await pedir(api, 'POST', 'token-beto', solicitud({ accion: 'Descartar evento', resultado: 'Evento descartado' }));
+
+  for (const token of ['token-ana', 'token-sup']) {
+    const resp = await pedir(api, 'GET', token, undefined, '?resumen=1');
+    assert.equal(resp.status, 200);
+    const { resumen } = await resp.json();
+    assert.equal(resumen.reduce((total, fila) => total + fila.cantidad, 0), 3);
+    for (const fila of resumen) {
+      assert.deepEqual(Object.keys(fila).sort(), ['accion', 'cantidad', 'estado', 'id_evento', 'resultado']);
+    }
+  }
+  assert.equal((await pedir(api, 'GET', 'token-adm', undefined, '?resumen=1')).status, 403);
+  assert.equal((await pedir(api, 'GET', undefined, undefined, '?resumen=1')).status, 401);
+  assert.ok(llamadas.some(llamada => llamada.ruta === '/rest/v1/rpc/resumen_gestiones' && llamada.metodo === 'GET'));
+});
+
+test('resumen operativo: si falla la conexión responde 503', async () => {
+  const entorno = crearEntorno();
+  entorno.sinConexion = true;
+  const resp = await pedir(entorno.api, 'GET', 'token-ana', undefined, '?resumen=1');
+  assert.equal(resp.status, 503);
+  assert.equal((await resp.json()).mensaje, 'No pudimos cargar el resumen. Intenta nuevamente.');
 });
