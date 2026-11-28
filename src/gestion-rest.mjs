@@ -80,30 +80,43 @@ export function crearApiRest({ solicitar, identificar, origenPermitido }) {
     // Solo los cinco campos del formulario. El resto lo asigna la base.
     const insercion = await rest(sesion, '/rest/v1/gestion', {
       metodo: 'POST',
-      parametros: { select: COLUMNAS },
+      parametros: { select: COLUMNAS, on_conflict: 'folio' },
       cuerpo: valores,
-      prefer: 'return=representation,resolution=ignore-duplicates'
+      prefer: 'return=representation,resolution=ignore-duplicates,missing=default'
     });
     if (!insercion.ok) return falloSupabase(insercion, falla);
     const [creada] = filas(insercion);
     if (creada) return responder({ mensaje: 'Gestión registrada.', gestion: creada }, 201);
 
     // El folio ya existía: reintento de la misma solicitud o folio ajeno.
+    // Se filtra por el usuario autenticado como defensa adicional a RLS.
     const previa = await rest(sesion, '/rest/v1/gestion', {
-      parametros: { select: COLUMNAS, folio: 'eq.' + valores.folio }
+      parametros: { select: COLUMNAS, folio: 'eq.' + valores.folio, id_usuario: 'eq.' + sesion.id_usuario }
     });
     if (!previa.ok) return falloSupabase(previa, falla);
     const [existente] = filas(previa);
-    if (existente && existente.id_evento === valores.id_evento && existente.accion === valores.accion &&
+    if (existente && existente.id_usuario === sesion.id_usuario && existente.id_evento === valores.id_evento && existente.accion === valores.accion &&
         existente.resultado === valores.resultado && existente.comentario === valores.comentario) {
       return responder({ mensaje: 'Gestión registrada.', gestion: existente }, 200);
     }
     return responder({ mensaje: 'Ese folio corresponde a otra solicitud.' }, 409);
   }
 
+  // Resumen operativo: solo cantidades por evento, acción, resultado y estado.
+  // La función SQL no devuelve folios, usuarios ni comentarios.
+  async function resumir(sesion) {
+    const resumen = await rest(sesion, '/rest/v1/rpc/resumen_gestiones');
+    if (!resumen.ok) return falloSupabase(resumen, 'No pudimos cargar el resumen. Intenta nuevamente.');
+    return responder({ resumen: filas(resumen) }, 200);
+  }
+
   async function consultar(request, sesion) {
-    if (!autorizar(sesion.rol, 'consultar')) return responder({ mensaje: 'No tienes permisos para esta operación.' }, 403);
     const url = new URL(request.url);
+    if (url.searchParams.has('resumen')) {
+      if (!autorizar(sesion.rol, 'resumir')) return responder({ mensaje: 'No tienes permisos para esta operación.' }, 403);
+      return resumir(sesion);
+    }
+    if (!autorizar(sesion.rol, 'consultar')) return responder({ mensaje: 'No tienes permisos para esta operación.' }, 403);
     const falla = 'No pudimos cargar las gestiones. Intenta nuevamente.';
     const parametros = { select: COLUMNAS };
     // El Analista consulta solo las propias. La base lo refuerza con RLS.
