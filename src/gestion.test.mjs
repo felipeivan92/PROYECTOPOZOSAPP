@@ -189,3 +189,23 @@ test('la matriz de permisos por rol coincide con docs/permisos.md', () => {
   }
   assert.equal(autorizar('Supervisor', 'eliminar'), false);
 });
+
+test('los límites de texto cuentan caracteres Unicode y id_evento respeta el rango INTEGER', () => {
+  assert.equal(validarCreacion({ ...base, comentario: '😀'.repeat(300) }).ok, true);
+  assert.equal(validarCreacion({ ...base, comentario: '😀'.repeat(301) }).mensaje, 'Usa un comentario válido de hasta 300 caracteres.');
+  const anular = motivo => validarTransicion({ estadoActual: 'Registrada', estadoNuevo: 'Anulada', motivo });
+  assert.equal(anular('😀'.repeat(300)).ok, true);
+  assert.equal(anular('😀'.repeat(301)).mensaje, 'Usa un motivo válido de hasta 300 caracteres.');
+
+  assert.equal(validarCreacion({ ...base, id_evento: 2147483647 }).ok, true);
+  assert.equal(validarCreacion({ ...base, id_evento: 2147483648 }).mensaje, 'El evento o el folio de la solicitud no es válido.');
+  assert.equal(validarCreacion({ ...base, id_evento: 1 }).ok, true);
+  assert.equal(validarCreacion({ ...base, id_evento: 0 }).ok, false);
+});
+
+test('el resumen operativo lo pueden consultar el Analista y el Supervisor, no el Administrador', () => {
+  assert.equal(autorizar('Analista', 'resumir'), true);
+  assert.equal(autorizar('Supervisor', 'resumir'), true);
+  assert.equal(autorizar('Administrador', 'resumir'), false);
+  assert.equal(autorizar(undefined, 'resumir'), false);
+});
