@@ -1,0 +1,31 @@
+
+name: Pruebas de autenticacion
+
+on:
+  push:
+    branches:
+      - 'avance8/seguridad'
+
+permissions:
+  contents: read
+
+jobs:
+  autenticacion:
+    name: Pruebas de seguridad y autenticacion
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Obtener codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verificar version de Node.js
+        run: node --version
+
+      - name: Ejecutar pruebas de autenticacion
+        run: node --test src/auth.test.mjs
