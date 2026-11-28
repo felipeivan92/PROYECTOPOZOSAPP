@@ -141,7 +141,9 @@ export function crearApiRest({ solicitar, identificar, origenPermitido }) {
       parametros: { ...parametros, order: 'fecha_hora.desc', limit: LIMITE }
     });
     if (!lista.ok) return falloSupabase(lista, falla);
-    return responder({ gestiones: filas(lista) }, 200);
+    // El rol se informa para que la interfaz muestre solo las acciones permitidas.
+    // El servidor y la base siguen validando cada operación.
+    return responder({ gestiones: filas(lista), rol: sesion.rol }, 200);
   }
 
   async function actualizar(request, sesion) {
