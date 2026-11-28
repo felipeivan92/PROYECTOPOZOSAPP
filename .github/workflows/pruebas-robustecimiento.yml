@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - 'avance8/robustecimiento'
+      - 'avance8/apoyo-seguridad'
   pull_request:
     branches:
       - 'dev'
+      - 'avance8/robustecimiento'
 
 permissions:
   contents: read
