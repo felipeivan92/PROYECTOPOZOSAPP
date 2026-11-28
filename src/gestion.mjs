@@ -3,6 +3,7 @@ import { decisiones } from './public/decisiones.js';
 const formatoFolio = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export const MAX_TEXTO = 300;
+export const MAX_ID_EVENTO = 2147483647; // rango INTEGER de PostgreSQL
 
 export const ESTADOS = ['Registrada', 'Cerrada', 'Anulada'];
 
@@ -17,8 +18,8 @@ export const TRANSICIONES = new Map([
 // Solo define la regla de rol. La pertenencia del registro (Analista: propias)
 // la verifica el servidor al consultar y la base de datos mediante RLS.
 const PERMISOS = new Map([
-  ['Analista', ['crear', 'consultar']],
-  ['Supervisor', ['consultar', 'actualizar', 'anular']],
+  ['Analista', ['crear', 'consultar', 'resumir']],
+  ['Supervisor', ['consultar', 'actualizar', 'anular', 'resumir']],
   ['Administrador', []]
 ]);
 
@@ -26,15 +27,18 @@ export function autorizar(rol, operacion) {
   return PERMISOS.get(rol)?.includes(operacion) === true;
 }
 
+// Cuenta caracteres Unicode, igual que char_length de PostgreSQL.
 function textoValido(texto) {
-  return texto.length >= 1 && texto.length <= MAX_TEXTO && !texto.includes('\u0000');
+  const largo = Array.from(texto).length;
+  return largo >= 1 && largo <= MAX_TEXTO && !texto.includes('\u0000');
 }
 
 // Validación de la creación. Conserva los mensajes del Avance 7.
 export function validarCreacion(datos) {
   const { folio, id_evento, accion, resultado } = datos ?? {};
   const comentario = typeof datos?.comentario === 'string' ? datos.comentario.trim() : '';
-  if (typeof folio !== 'string' || !formatoFolio.test(folio) || !Number.isSafeInteger(id_evento) || id_evento < 1) {
+  if (typeof folio !== 'string' || !formatoFolio.test(folio) || !Number.isSafeInteger(id_evento) ||
+      id_evento < 1 || id_evento > MAX_ID_EVENTO) {
     return { ok: false, status: 422, mensaje: 'El evento o el folio de la solicitud no es válido.' };
   }
   if (!decisiones.get(accion)?.includes(resultado)) {
