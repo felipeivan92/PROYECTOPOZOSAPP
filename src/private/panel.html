@@ -113,7 +113,7 @@
             <textarea
               id="comentario"
               name="comentario"
-              maxlength="300"
+              maxlength="600"
               rows="3"
               aria-describedby="comentario-ayuda comentario-error"
               required
@@ -123,6 +123,8 @@
               Hasta 300 caracteres.
               Evita nombres y datos operacionales.
             </p>
+
+            <p class="ayuda" id="comentario-contador" data-exceso="no">0/300</p>
 
             <p id="comentario-error" role="alert" hidden></p>
 
@@ -142,6 +144,71 @@
       </section>
 
     </div>
+
+    <section aria-labelledby="lista-titulo" class="panel lista">
+
+      <div class="barra">
+        <h2 id="lista-titulo">Gestiones registradas</h2>
+
+        <div class="filtros">
+          <label for="filtro-estado">Estado</label>
+          <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option>Registrada</option>
+            <option>Cerrada</option>
+            <option>Anulada</option>
+          </select>
+          <button id="actualizar" type="button">Actualizar</button>
+        </div>
+      </div>
+
+      <p class="ayuda" id="resumen" aria-live="polite"></p>
+
+      <p id="lista-estado" role="status" aria-live="polite" aria-atomic="true"></p>
+      <p id="lista-aviso" role="status" aria-live="polite" aria-atomic="true"></p>
+
+      <div class="tabla-scroll">
+        <table id="tabla" hidden>
+          <caption class="sr">Gestiones registradas</caption>
+          <thead>
+            <tr>
+              <th scope="col">Folio</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Evento</th>
+              <th scope="col">Acción</th>
+              <th scope="col">Resultado</th>
+              <th scope="col">Comentario</th>
+              <th scope="col">Estado</th>
+              <th scope="col" id="columna-acciones" hidden>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="filas"></tbody>
+        </table>
+      </div>
+
+      <form id="anulacion" hidden novalidate>
+        <h3 id="anulacion-titulo">Anular gestión</h3>
+        <p class="ayuda">
+          La anulación es definitiva: el registro se conserva, pero no se podrá reabrir.
+        </p>
+
+        <label for="motivo">Motivo de la anulación</label>
+        <textarea
+          id="motivo"
+          name="motivo"
+          maxlength="600"
+          rows="3"
+          aria-describedby="motivo-contador motivo-error"
+          required
+        ></textarea>
+        <p class="ayuda" id="motivo-contador" data-exceso="no">0/300</p>
+        <p id="motivo-error" role="alert" hidden></p>
+
+        <button type="submit">Confirmar anulación</button>
+        <button type="button" id="cancelar-anulacion" class="secundario">Cancelar</button>
+      </form>
+
+    </section>
 
   </main>
 
