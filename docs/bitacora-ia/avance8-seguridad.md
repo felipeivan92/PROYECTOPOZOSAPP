@@ -104,6 +104,19 @@ GitHub Actions.
 - Verificación posterior al módulo de cierre de sesión:
   https://github.com/felipeivan92/PROYECTOPOZOSAPP/actions/runs/46106275275
 
+### Capturas de verificación
+
+| Evidencia | Descripción |
+| --- | --- |
+| [A8_01](../evidencias/avance8/A8_01_resumen_pruebas_autenticacion.png) | Resumen de la ejecución exitosa de autenticación. |
+| [A8_02](../evidencias/avance8/A8_02_resultados_pruebas_autenticacion.png) | Resultados de las ocho pruebas de autenticación. |
+| [A8_03](../evidencias/avance8/A8_03_pruebas_proteccion_panel.png) | Resumen de la ejecución integrada de seguridad. |
+| [A8_04](../evidencias/avance8/A8_04_resultados_integrados_seguridad.png) | Resultados de las quince pruebas automatizadas. |
+
+Las capturas complementan los enlaces de GitHub Actions
+y permiten respaldar la verificación del código desarrollado
+con asistencia de IA.
+
 ## 6. Actividades pendientes
 
 - Validación grupal de la matriz de permisos.
@@ -112,7 +125,7 @@ GitHub Actions.
 - Integración con las operaciones CRUD.
 - Pruebas reales de autenticación en Vercel.
 - Pruebas independientes de seguridad.
-- Incorporación de capturas y evidencia audiovisual.
+- Incorporación de capturas y evidencia audiovisual de las pruebas finales.
 
 Las pruebas automatizadas realizadas durante el desarrollo
 no reemplazan las pruebas independientes exigidas por la pauta.
