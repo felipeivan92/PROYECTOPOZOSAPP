@@ -7,6 +7,6 @@
   },
   "scripts": {
     "dev": "node src/local.mjs",
-    "test": "node --test src/gestion.test.mjs"
+    "test": "node --test src/*.test.mjs"
   }
 }
