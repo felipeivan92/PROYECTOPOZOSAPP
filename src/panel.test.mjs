@@ -157,3 +157,79 @@ test('Rechaza métodos HTTP no autorizados', async () => {
 
   assert.equal(respuesta.status, 405);
 });
+
+
+// 8 y 9. Acceso permitido al panel privado.
+// Se comprueba el ingreso de ambos roles operativos.
+
+for (const rol of ['Analista', 'Supervisor']) {
+
+  test(`Permite acceso al panel al ${rol}`, async t => {
+
+    t.mock.method(globalThis, 'fetch', async url => {
+
+      const ruta = new URL(url).pathname;
+
+      if (ruta === '/auth/v1/user') {
+        return Response.json({
+          id: 'usuario-demo'
+        });
+      }
+
+      if (ruta === '/rest/v1/perfil') {
+        return Response.json([{
+          id_usuario: 'usuario-demo',
+          rol,
+          activo: true
+        }]);
+      }
+
+      throw new Error('Solicitud inesperada');
+
+    });
+
+    const respuesta = await api.fetch(
+      solicitud(COOKIE)
+    );
+
+    // El usuario autorizado debe recibir el panel.
+
+    assert.equal(respuesta.status, 200);
+
+    assert.match(
+      respuesta.headers.get('content-type'),
+      /text\/html/
+    );
+
+    // Verificar los encabezados de seguridad.
+
+    assert.equal(
+      respuesta.headers.get('cache-control'),
+      'private, no-store'
+    );
+
+    assert.equal(
+      respuesta.headers.get('x-content-type-options'),
+      'nosniff'
+    );
+
+    // Comprobar que se entrega la interfaz correcta.
+
+    const contenido = await respuesta.text();
+
+    assert.match(contenido, /Aqua Trace/);
+    assert.match(contenido, /id="cerrar-sesion"/);
+    assert.match(contenido, /id="gestion"/);
+
+    // El token no debe aparecer en el HTML.
+
+    assert.equal(
+      contenido.includes(TOKEN),
+      false
+    );
+
+  });
+
+}
+
+
