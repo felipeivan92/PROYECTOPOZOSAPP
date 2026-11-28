@@ -9,15 +9,42 @@
   <script type="module" src="/app.js"></script>
 </head>
 
+<script type="module">
+  import { configurarCierreSesion } from '/logout.js';
+
+  const boton = document.querySelector('#cerrar-sesion');
+  const mensaje = document.querySelector('#mensaje-sesion');
+
+  configurarCierreSesion(boton, mensaje);
+
+  boton.disabled = false;
+</script>
+
 <body>
 
-  <header>
-    <div class="wrap">
+<header>
+  <div class="wrap">
+    <div>
       Aqua Trace <span>Equipo 7</span>
     </div>
-  </header>
+
+    <button
+      id="cerrar-sesion"
+      type="button"
+      disabled
+    >
+      Cerrar sesión
+    </button>
+  </div>
+</header>
 
   <main class="wrap">
+    <p
+  id="mensaje-sesion"
+  role="status"
+  aria-live="polite"
+  aria-atomic="true"
+></p>
 
     <h1>Registrar gestión</h1>
 
